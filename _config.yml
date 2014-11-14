@@ -1,0 +1,30 @@
+# Site settings
+title: Web stream
+email: bindel@cornell.edu
+description: > # this means to ignore newlines until "baseurl:"
+  Web site of the SIAM Activity Group on Linear Algebra.
+baseurl: "/" # the subpath of your site, e.g. /blog/
+url: "http://siags.siam.org" # the base hostname & protocol for your site
+
+encoding: utf-8
+timezone: America/New_York
+
+defaults:
+ - scope:
+     path: "talks"
+     type: "pages"
+   values:
+     layout: talks
+ - scope:
+     type: "talks"
+   values:
+     subhead: Talks
+     layout: talk-info
+     mathjax: true
+
+collections:
+  talks:
+    output: true
+
+# Build settings
+markdown: kramdown

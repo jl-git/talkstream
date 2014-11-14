@@ -1,0 +1,20 @@
+- name: Cornell
+  cornell-scan: true
+  cornell-cam: true
+- name: Berkeley
+  ucb-lapack: true
+- name: Stanford
+  stanford-la-opt: true
+- name: MIT
+  mit-amc: true
+- name: Temple
+  temple-am: true
+- name: VA Tech
+  vt-am-colloq: true
+- name: NCSU
+  ncsu-nas: true
+  ncsu-amc: true
+- name: Oxford
+  oxford-nas: true
+- name: Manchester
+  manchester-nas: true

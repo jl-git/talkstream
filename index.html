@@ -1,0 +1,34 @@
+---
+subhead: Talks
+layout: talks
+mathjax: true
+jquery: filtering.js
+---
+
+<button class="pure-button" style="font-size: 70%;" id="button-all">All</button>
+{% for filter in site.data.filters %}
+<button class="pure-button" style="font-size: 70%;" id="button-{{ filter.name }}">{{ filter.name }}</button>
+{% endfor %}
+
+{% for talk in site.talks reversed %}
+<div class="series-{{ talk.series }}">
+  <h3 class="content-subhead">
+    <a href="{{ talk.url }}">{{ talk.title }}</a>
+    <!-- <a href="{{ talk.url }}"><i class="fa fa-plus-square"></i></a> -->
+    {% if talk.talk-url %}<a href="{{ talk.talk-url }}"><i class="fa fa-external-link-square"></i></a>{% endif %}
+    <a class="toggler"><i class="fa fa-plus-square"></i></a>
+  </h3>
+  <p>
+    {% if talk.speaker-url %}<a href="{{ talk.speaker-url }}">{{ talk.speaker }}</a>{% else %}{{ talk.speaker }}
+    {% endif %}
+    ({{ talk.affil }})<br/>
+    {% if talk.series %}
+    {{ site.data.series_names[talk.series] }},
+    {% endif %}
+    {{ talk.date | date_to_string }}
+  </p>
+  <div class="blurb"> 
+  {{ talk.content | markdownify }}
+  </div>
+</div>
+{% endfor %}

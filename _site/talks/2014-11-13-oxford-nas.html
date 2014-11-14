@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Quadrature in infinite dimensions and applications in uncertainty quantification</title>
+  <meta name="description" content="Web site of the SIAM Activity Group on Linear Algebra.
+">
+
+   <link href="/" rel="alternate" title="SIAG-LA" type="application/atom+xml" />
+
+  <link rel="stylesheet" href="/css/layouts/pure-min.css">
+  <link rel="stylesheet" href="/css/font-awesome/css/font-awesome.min.css">
+
+  <!--[if lte IE 8]>
+      <link rel="stylesheet" href="/css/layouts/side-menu-old-ie.css">
+      <link rel="stylesheet" href="/css/layouts/grids-responsive-old-ie-min.css">
+  <![endif]-->
+  <!--[if gt IE 8]><!-->
+      <link rel="stylesheet" href="/css/layouts/grids-responsive-min.css">
+      <link rel="stylesheet" href="/css/layouts/side-menu.css">
+  <!--<![endif]-->
+
+  <link rel="shortcut icon" href="http://www.siam.org/favicon.ico" type="image/x-icon">
+  <link rel="canonical" href="http://siags.siam.org//talks/2014-11-13-oxford-nas.html">
+
+  
+  <!-- mathjax config similar to math.stackexchange -->
+  <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+      jax: ["input/TeX", "output/HTML-CSS"],
+        tex2jax: {
+          inlineMath: [['$', '$']],
+          displayMath: [['$$', '$$']],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        },
+      messageStyle: "none",
+      "HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"] }
+    });
+  </script>
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" type="text/javascript"></script>
+  
+
+  
+
+</head>
+
+
+  <body>
+    <div id="layout">
+
+      <!-- Menu toggle -->
+<a href="#menu" id="menuLink" class="menu-link">
+  <!-- Hamburger icon -->
+  <span></span>
+</a>
+
+<div id="menu">
+  <div class="pure-menu pure-menu-open">
+    <a class="pure-menu-heading" href="#">Web stream</a>
+    
+    <ul>
+      <li>
+        <a href="/index.html">Home</a>
+      </li>
+      <li>
+        <a href="/about.html">About</a>
+      </li>
+      <li>
+        <a href="/meetings/">Conferences</a>
+      </li>
+      <li>
+        <a href="/news.html">Newsletter</a>
+      </li>
+      <li>
+        <a href="/prizes.html">Prizes</a>
+      </li>
+      <li>
+        <a href="/related.html">Related</a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+
+      <div id="main">
+        <div class="header">
+          <h1>Web Stream</h1>
+<h2>Talks</h2>
+
+        </div>
+
+        <div class="content">
+          <div class="pure-menu pure-menu-open pure-menu-horizontal">
+  <ul>
+    <li>
+      <a href="index.html">Index</a>
+    </li>
+    <li>
+      <a href="upcoming.html">Upcoming</a>
+    </li>
+    <li>
+      <a href="siamla.html">SIAM LA</a>
+    </li>
+    <li>
+      <a href="business.html">Business</a>
+    </li>
+    <li>
+      <a href="summer.html">Summer schools</a>
+    </li>
+  </ul>
+</div>
+
+
+<div class="content-subhead">
+<h3><a href="https://www.maths.ox.ac.uk/node/12962">Quadrature in infinite dimensions and applications in uncertainty quantification</a></h3>
+<p>
+  <a href="http://www.maths.bath.ac.uk/~masrs/">Rob Scheichl</a>
+  (University of Bath)<br/>
+  Oxford Numerical Analysis Seminar,
+  13 Nov 2014
+</p>
+</div>
+
+<p>The coefficients in mathematical models of physical processes are often
+impossible to determine fully or accurately, and are hence subject to
+uncertainty. It is of great importance to quantify the uncertainty in the model
+outputs based on the (uncertain) information that is available on the model
+inputs. This invariably leads to very high dimensional quadrature problems
+associated with the computation of statistics of quantities of interest, such
+as the time it takes a pollutant plume in an uncertain subsurface flow problem
+to reach the boundary of a safety region or the buckling load of an airplane
+wing. Higher order methods, such as stochastic Galerkin or polynomial chaos
+methods, suffer from the curse of dimensionality and when the physical models
+themselves are complex and computationally costly, they become prohibitively
+expensive in higher dimensions. Instead, some of the most promising approaches
+to quantify uncertainties in continuum models are based on Monte Carlo sampling
+and the “multigrid philosophy”. Multilevel Monte Carlo (MLMC) Methods have been
+introduced recently and successfully applied to many model problems, producing
+significant gains. In this talk I want to recall the classical MLMC method and
+then show how the gains can be improved further (significantly) by using
+quasi-Monte Carlo (QMC) sampling rules. More importantly the dimension
+independence and the improved gains can be justified rigorously for an
+important model problem in subsurface flow. To achieve uniform bounds,
+independent of the dimension, it is necessary to work in infinite dimensions
+and to study quadrature in sequence spaces. I will present the elements of this
+new theory for the case of lognormal random coefficients in a diffusion problem
+and support the theory with numerical experiments.</p>
+
+
+        </div>
+
+        <div class="footer">
+          <footer>
+<div class="legal pure-g">
+  <div class="pure-u-1-3"></div>
+  <div class="pure-u-2-3">
+    <p class="legal-copyright">
+      &copy; 2014 David Bindel
+    </p>
+  </div>
+</div>
+</footer>
+
+        </div>
+        
+    </div>
+
+    <script src="js/ui.js"></script>
+  </body>
+
+</html>

@@ -1,0 +1,20 @@
+---
+layout: default
+---
+
+<div>
+  
+  <div>
+    <h2 class="content-subhead">{{ page.title }}</h2>
+    <p>{{ page.date | date: "%b %-d, %Y" }}{% if page.author %} &#8226; {{ page.author }}{% endif %}{% if page.meta %} &#8226; {{ page.meta }}{% endif %}</p>
+  </div>
+
+  <div>
+    {{ content }}
+  </div>
+
+  {% if page.comments %}
+  {% include disqus.html %}
+  {% endif %}
+
+</div>

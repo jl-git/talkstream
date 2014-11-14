@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>A Projected Preconditioned Conjugate Gradient algorithm for computing a large invariant subspace of a Hermitian matrix</title>
+  <meta name="description" content="Web site of the SIAM Activity Group on Linear Algebra.
+">
+
+   <link href="/" rel="alternate" title="SIAG-LA" type="application/atom+xml" />
+
+  <link rel="stylesheet" href="/css/layouts/pure-min.css">
+  <link rel="stylesheet" href="/css/font-awesome/css/font-awesome.min.css">
+
+  <!--[if lte IE 8]>
+      <link rel="stylesheet" href="/css/layouts/side-menu-old-ie.css">
+      <link rel="stylesheet" href="/css/layouts/grids-responsive-old-ie-min.css">
+  <![endif]-->
+  <!--[if gt IE 8]><!-->
+      <link rel="stylesheet" href="/css/layouts/grids-responsive-min.css">
+      <link rel="stylesheet" href="/css/layouts/side-menu.css">
+  <!--<![endif]-->
+
+  <link rel="shortcut icon" href="http://www.siam.org/favicon.ico" type="image/x-icon">
+  <link rel="canonical" href="http://siags.siam.org//talks/2014-10-22-ucb-lapack.html">
+
+  
+  <!-- mathjax config similar to math.stackexchange -->
+  <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+      jax: ["input/TeX", "output/HTML-CSS"],
+        tex2jax: {
+          inlineMath: [['$', '$']],
+          displayMath: [['$$', '$$']],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        },
+      messageStyle: "none",
+      "HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"] }
+    });
+  </script>
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" type="text/javascript"></script>
+  
+
+  
+
+</head>
+
+
+  <body>
+    <div id="layout">
+
+      <!-- Menu toggle -->
+<a href="#menu" id="menuLink" class="menu-link">
+  <!-- Hamburger icon -->
+  <span></span>
+</a>
+
+<div id="menu">
+  <div class="pure-menu pure-menu-open">
+    <a class="pure-menu-heading" href="#">Web stream</a>
+    
+    <ul>
+      <li>
+        <a href="/index.html">Home</a>
+      </li>
+      <li>
+        <a href="/about.html">About</a>
+      </li>
+      <li>
+        <a href="/meetings/">Conferences</a>
+      </li>
+      <li>
+        <a href="/news.html">Newsletter</a>
+      </li>
+      <li>
+        <a href="/prizes.html">Prizes</a>
+      </li>
+      <li>
+        <a href="/related.html">Related</a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+
+      <div id="main">
+        <div class="header">
+          <h1>Web Stream</h1>
+<h2>Talks</h2>
+
+        </div>
+
+        <div class="content">
+          <div class="pure-menu pure-menu-open pure-menu-horizontal">
+  <ul>
+    <li>
+      <a href="index.html">Index</a>
+    </li>
+    <li>
+      <a href="upcoming.html">Upcoming</a>
+    </li>
+    <li>
+      <a href="siamla.html">SIAM LA</a>
+    </li>
+    <li>
+      <a href="business.html">Business</a>
+    </li>
+    <li>
+      <a href="summer.html">Summer schools</a>
+    </li>
+  </ul>
+</div>
+
+
+<div class="content-subhead">
+<h3><a href="http://math.berkeley.edu/~mgu/Seminar/Fall2014/MCaSCS_2014-10-15.pdf">A Projected Preconditioned Conjugate Gradient algorithm for computing a large invariant subspace of a Hermitian matrix</a></h3>
+<p>
+  <a href="http://evecharynski.com/">Eugene Vecharynski</a>
+  (LBNL)<br/>
+  Berkeley Matrix Computations Seminar,
+  22 Oct 2014
+</p>
+</div>
+
+<p>The Rayleigh-Ritz (RR) procedure constitutes one of the major steps in
+eigenvalue computations. Most of the standard eigenvalue solvers employ this
+mechanism at each iteration to extract approximate eigenpairs. In practice, the
+RR calculations amount to solving a projected dense eigenvalue problem. The
+size of this projected problem is typically proportional to the number of
+targeted eigenpairs.</p>
+
+<p>If only a few eigenpairs are sought, then the cost of the RR procedure is
+negligibly low and the associated computations have no significant effect on
+the overall performance of an eigenvalue solver. However, if the number of
+targeted eigenpairs is large, e.g., on the order of thousands or more, then the
+RR cost may become dominant and may noticeably affect the solution time. The
+relative high cost comes from the cubic scaling of the complexity of the dense
+eigenvalue problem,  as well as limited scalability of the current generation
+of dense eigensolvers  in the distributed memory environment.  </p>
+
+<p>In this talk, I will address the question of avoiding the frequent RR
+computations for Hermitian  eigenvalue problems where a large number of extreme
+eigenpairs is wanted.  I will describe a new approach that is based on a
+preconditioned gradient-type scheme that does not rely on the RR  procedure at
+each iteration. Several numerical results, where the proposed technique is
+applied to realistic problems arising in electronic structure calculations,
+will be presented.</p>
+
+
+
+        </div>
+
+        <div class="footer">
+          <footer>
+<div class="legal pure-g">
+  <div class="pure-u-1-3"></div>
+  <div class="pure-u-2-3">
+    <p class="legal-copyright">
+      &copy; 2014 David Bindel
+    </p>
+  </div>
+</div>
+</footer>
+
+        </div>
+        
+    </div>
+
+    <script src="js/ui.js"></script>
+  </body>
+
+</html>
