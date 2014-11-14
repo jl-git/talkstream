@@ -10,6 +10,7 @@ group-name:
   manchester: Manchester
   nyu: NYU
   chicago: Chicago
+  princeton: Princeton
 
 # Map from series to filters
 cornell-scan: [cornell]
@@ -25,3 +26,4 @@ oxford-nas: [oxford]
 manchester-nas: [manchester]
 nyu-nasc: [nyu]
 chicago-ssc: [chicago]
+princeton-pacm: [princeton]
