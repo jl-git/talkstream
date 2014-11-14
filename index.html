@@ -5,18 +5,18 @@ mathjax: true
 jquery: filtering.js
 ---
 
-<button class="pure-button" style="font-size: 70%;" id="button-all">All</button>
-{% for filter in site.data.filters %}
-<button class="pure-button" style="font-size: 70%;" id="button-{{ filter.name }}">{{ filter.name }}</button>
-{% endfor %}
+<div id="filters">
+  <a href="#" class="pure-button" style="font-size: 70%;" id="filter-all">All</a>
+  {% for g in site.data.groups.group-name %}
+  <a href="#" class="pure-button" style="font-size: 70%;" id="filter-{{ g[0] }}">{{ g[1] }}</a>{% endfor %}
+</div>
 
 {% for talk in site.talks reversed %}
-<div class="series-{{ talk.series }}">
+<div class="talk filter-all{% for g in site.data.groups[talk.series] %} filter-{{ g }}{% endfor %}">
   <h3 class="content-subhead">
     <a href="{{ talk.url }}">{{ talk.title }}</a>
-    <!-- <a href="{{ talk.url }}"><i class="fa fa-plus-square"></i></a> -->
     {% if talk.talk-url %}<a href="{{ talk.talk-url }}"><i class="fa fa-external-link-square"></i></a>{% endif %}
-    <a class="toggler"><i class="fa fa-plus-square"></i></a>
+    <a href="#" class="toggler" id="blurb-{{ talk.url | slugify }}"><i class="fa fa-plus-square"></i></a>
   </h3>
   <p>
     {% if talk.speaker-url %}<a href="{{ talk.speaker-url }}">{{ talk.speaker }}</a>{% else %}{{ talk.speaker }}
@@ -27,7 +27,7 @@ jquery: filtering.js
     {% endif %}
     {{ talk.date | date_to_string }}
   </p>
-  <div class="blurb"> 
+  <div class="blurb blurb-{{ talk.url | slugify }}"> 
   {{ talk.content | markdownify }}
   </div>
 </div>

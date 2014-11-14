@@ -1,0 +1,24 @@
+# Available filters and text names
+group-name:
+  cornell: Cornell
+  berkeley: Berkeley
+  stanford: Stanford
+  mit: MIT
+  vt: Virginia Tech
+  ncsu: NCSU
+  oxford: Oxford
+  manchester: Manchester
+
+# Map from series to filters
+cornell-scan: [cornell]
+cornell-cam: [cornell]
+ucb-lapack: [berkeley]
+stanford-la-opt: [stanford]
+mit-amc: [mit]
+temple-am: [temple]
+vt-am-colloq: [vt]
+ncsu-nas: [ncsu]
+ncsu-amc: [ncsu]
+oxford-nas: [oxford]
+manchester-nas: [manchester]
+
