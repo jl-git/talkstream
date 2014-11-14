@@ -1,5 +1,5 @@
 ---
-title: Conservation of knottiness in real and idalized fluids
+title: Conservation of knottiness in real and idealized fluids
 speaker: William Irvine
 speaker-url: http://jfi.uchicago.edu/~william/
 affil: University of Chicago
