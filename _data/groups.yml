@@ -8,6 +8,7 @@ group-name:
   ncsu: NCSU
   oxford: Oxford
   manchester: Manchester
+  nyu: NYU
 
 # Map from series to filters
 cornell-scan: [cornell]
@@ -21,4 +22,4 @@ ncsu-nas: [ncsu]
 ncsu-amc: [ncsu]
 oxford-nas: [oxford]
 manchester-nas: [manchester]
-
+nyu-nasc: [nyu]
