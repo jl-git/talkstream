@@ -8,8 +8,8 @@ talk-url: http://www.pacm.princeton.edu/node/326
 series: princeton-pacm
 ---
 
-We describe a framework for exact post-selection inference.At the core of our
-framework is what we call selective inferencewhich allows us to define
+We describe a framework for exact post-selection inference.  At the core of our
+framework is what we call selective inference which allows us to define
 selective Type I and II errors for hypothesis tests and selective coverage for
 intervals.
  

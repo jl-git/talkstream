@@ -5,10 +5,13 @@ mathjax: true
 jquery: filtering.js
 ---
 
-<div id="filters">
-  <a href="#" class="pure-button" style="font-size: 70%;" id="filter-all">All</a>
+<div id="filters" class="pure-menu pure-menu-open
+                         pure-menu-horizontal">
+  <ul>
+    <li><a href="#" style="font-size: 70%;" id="filter-all">All</a></li>
   {% for g in site.data.groups.group-name %}
-  <a href="#" class="pure-button" style="font-size: 70%;" id="filter-{{ g[0] }}">{{ g[1] }}</a>{% endfor %}
+    <li><a href="#" style="font-size: 70%;" id="filter-{{ g[0] }}">{{ g[1] }}</a></li>{% endfor %}
+  </ul>
 </div>
 
 {% for talk in site.talks reversed %}
