@@ -1,0 +1,37 @@
+---
+subhead: Talks
+layout: talks
+mathjax: true
+jquery: filtering.js
+---
+
+<div id="filters" class="pure-menu pure-menu-open
+                         pure-menu-horizontal">
+  <ul>
+    <li><a href="#" style="font-size: 70%;" id="filter-all">All</a></li>
+  {% for g in site.data.groups.group-name %}
+    <li><a href="#" style="font-size: 70%;" id="filter-{{ g[0] }}">{{ g[1] }}</a></li>{% endfor %}
+  </ul>
+</div>
+
+{% for talk in site.talks reversed %}
+<div class="talk filter-all{% for g in site.data.groups[talk.series] %} filter-{{ g }}{% endfor %}">
+  <h3 class="content-subhead">
+    <a href="{{ talk.url }}">{{ talk.title }}</a>
+    {% if talk.talk-url %}<a href="{{ talk.talk-url }}"><i class="fa fa-external-link-square"></i></a>{% endif %}
+    <a href="#" class="toggler" id="blurb-{{ talk.url | slugify }}"><i class="fa fa-plus-square"></i></a>
+  </h3>
+  <p>
+    {% if talk.speaker-url %}<a href="{{ talk.speaker-url }}">{{ talk.speaker }}</a>{% else %}{{ talk.speaker }}
+    {% endif %}
+    ({{ talk.affil }})<br/>
+    {% if talk.series %}
+    {{ site.data.series_names[talk.series] }},
+    {% endif %}
+    {{ talk.date | date_to_string }}
+  </p>
+  <div class="blurb blurb-{{ talk.url | slugify }}"> 
+  {{ talk.content | markdownify }}
+  </div>
+</div>
+{% endfor %}

@@ -1,37 +1,49 @@
----
-subhead: Talks
-layout: talks
-mathjax: true
-jquery: filtering.js
----
+<!DOCTYPE html>
+<html lang="en" ng-app='myApp'>
+<head>
+  <title></title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <script src="master.js"></script>
+  <style>
+    .rowentry {
+      background-color: #99FFFF;
+      margin: 0px 100px 10px 100px;
+      padding: 10px;
+      border: solid;
+      border-radius: 10px;}
 
-<div id="filters" class="pure-menu pure-menu-open
-                         pure-menu-horizontal">
-  <ul>
-    <li><a href="#" style="font-size: 70%;" id="filter-all">All</a></li>
-  {% for g in site.data.groups.group-name %}
-    <li><a href="#" style="font-size: 70%;" id="filter-{{ g[0] }}">{{ g[1] }}</a></li>{% endfor %}
-  </ul>
-</div>
+  </style>
+</head>
+tag field
+<body>
+  <nav class="navbar navbar-default">
+   <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">Super Seminar Scraper</a>
+      </div>
+      <div>
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="#">Home</a></li>
+          <li><a href="#">Map</a></li>
+          <li><a href="#">Page 2</a></li> 
+          <li><a href="#">About</a></li> 
+        </ul>
+      </div>
+    </div>
+  </nav>
 
-{% for talk in site.talks reversed %}
-<div class="talk filter-all{% for g in site.data.groups[talk.series] %} filter-{{ g }}{% endfor %}">
-  <h3 class="content-subhead">
-    <a href="{{ talk.url }}">{{ talk.title }}</a>
-    {% if talk.talk-url %}<a href="{{ talk.talk-url }}"><i class="fa fa-external-link-square"></i></a>{% endif %}
-    <a href="#" class="toggler" id="blurb-{{ talk.url | slugify }}"><i class="fa fa-plus-square"></i></a>
-  </h3>
-  <p>
-    {% if talk.speaker-url %}<a href="{{ talk.speaker-url }}">{{ talk.speaker }}</a>{% else %}{{ talk.speaker }}
-    {% endif %}
-    ({{ talk.affil }})<br/>
-    {% if talk.series %}
-    {{ site.data.series_names[talk.series] }},
-    {% endif %}
-    {{ talk.date | date_to_string }}
-  </p>
-  <div class="blurb blurb-{{ talk.url | slugify }}"> 
-  {{ talk.content | markdownify }}
-  </div>
-</div>
-{% endfor %}
+<script>
+var app = angular.module('myApp', []);
+app.controller('customersCtrl', function($scope, $http) {
+    $http.get("http://localhost/alltalks.html")
+    .success(function(response) {$scope.names = response.records;});
+});
+</script>
+
+
+</body>
+</html>
