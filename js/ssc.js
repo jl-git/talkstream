@@ -1,7 +1,7 @@
 var app = angular.module('myapp', []);
 
 app.controller('customersCtrl', function($scope, $http) {
-	$http.get("http://52.26.169.64/talkstream/_data/alltalks.json")
+	$http.get("../_data/alltalks.json")
 	.success(
 		function(response) {
 			$scope.names = response.records;
