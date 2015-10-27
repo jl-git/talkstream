@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app='myApp'>
+<html lang="en">
 <head>
   <title></title>
   <meta charset="utf-8">
@@ -7,42 +7,100 @@
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-  <script src="master.js"></script>
-  <style>
-    .rowentry {
-      background-color: #99FFFF;
-      margin: 0px 100px 10px 100px;
-      padding: 10px;
-      border: solid;
-      border-radius: 10px;}
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+  <script src="http://localhost/talkstream/js/ssc.js"></script>
+  <link rel="stylesheet" href="../css/main.css">
 
-  </style>
+
 </head>
-tag field
+
 <body>
   <nav class="navbar navbar-default">
    <div class="container-fluid">
       <div class="navbar-header">
-        <a class="navbar-brand" href="#">Super Seminar Scraper</a>
+        <a class="navbar-brand" href="http://localhost/talkstream/talks">Super Seminar Scraper</a>
       </div>
       <div>
         <ul class="nav navbar-nav">
-          <li class="active"><a href="#">Home</a></li>
-          <li><a href="#">Map</a></li>
-          <li><a href="#">Page 2</a></li> 
-          <li><a href="#">About</a></li> 
+          <li class="active"><a href="http://localhost/talkstream/talks">Home</a></li>
+          <li><a href="http://localhost/talkstream/talks/map.html">Map</a></li>
+          <li><a href="http://localhost/talkstream/talks/trending.html">Trending &amp Analysis</a></li> 
+          <li><a href="http://localhost/talkstream/talks/about.html">About</a></li> 
         </ul>
       </div>
     </div>
   </nav>
 
-<script>
-var app = angular.module('myApp', []);
-app.controller('customersCtrl', function($scope, $http) {
-    $http.get("http://localhost/alltalks.html")
-    .success(function(response) {$scope.names = response.records;});
-});
-</script>
+<div ng-app="myapp" ng-controller="customersCtrl" ng-init="init()"> 
+  <div class="tagsearch center container">
+    <div ng-repeat="x in names">
+      <div ng-init="initAllTags(x.Tags)">
+      </div>
+    </div>
+
+    <input type="text" ng-model="searchWord" ng-change="updateTags()" class="tagsearchentry form-control" placeholder="Search Tags Here!">
+    
+    <div class="tagsearchentry">
+      <span ng-show="containSearchWord(z, searchWord)" ng-repeat="z in alltags">
+        <button class="btn btn-primary btn-xs" ng-click="addfilter(z)">
+          {{ z }}
+        </button>
+      </span>
+    </div>
+
+  </div>
+
+  <div class=" center container">
+    <h1 ng-show="showallentries" class="showingall">Showing all Seminars</h1>
+    <button ng-show="!showallentries" class="btn btn-danger" ng-click="showall()">Show All Seminars</button>
+    <span ng-repeat="tag in filterstring">
+      <button class="tagbutton btn btn-warning" ng-click="removefilter(tag)">{{ tag }}</button> 
+    </span>
+  </div>
+
+
+  <div class="alltalks center">
+  <div  ng-show="showallentries || displayflag(x.Tags)" class="center rowentry container" ng-class="{{ x.Tags }}" ng-repeat="x in names">
+    <div class ="topic row">
+      {{ x.Topic }}
+    </div>
+    <div class="speaker row">
+    {{ x.Speaker }}
+    </div>
+    <div class="time row">
+    {{ x.Time }}
+    </div>
+    <div ng-show="showme" class="venue row">
+    {{ x.Venue }}
+    </div>
+    <div ng-show="showme" class="university row">
+    {{ x.University }}
+    </div>
+    <div ng-show="showme" class="url row">
+    <a ng-href="{{ x.URL }}">{{ x.URL }}</a>
+    </div>
+    <div ng-show="showme" class="description row animate-hide check-element ">
+    {{ x.Description }}
+    </div>
+
+    <div class="tags row">
+      <span ng-repeat="y in x.Tags">
+        <button class="btn btn-primary btn-xs" ng-click="addfilter(y)">
+        {{ y }}
+        </button>
+      </span>
+    </div>
+
+    <button class="btn btn-info"  ng-show="showme" ng-click="showme=false">Not interested</button> 
+    <button class="smm btn btn-info"  ng-hide="showme" ng-click="showme=true">Show me more!</button> 
+    </div>
+  </div>
+
+<footer class="footer">
+  <div class="container">
+    <p class="text-muted">An 2015 M.Eng Project...</p>
+  </div>
+</footer>
 
 
 </body>

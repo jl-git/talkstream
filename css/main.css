@@ -1,0 +1,82 @@
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 100px;
+}
+.row {
+  margin: 0px 0px 5px 0px;
+  color: white;
+}
+.rowentry {
+  background-color: #558C89;
+  margin: 0px 0px 0px 0px;
+  padding: 10px 10px 10px 10px;
+}
+
+.rowentry:nth-child(odd){
+  background-color: #74AFAD;
+}
+.navbar-default .navbar-nav > .active > a, 
+.navbar-default .navbar-nav > .active > a:hover, 
+.navbar-default .navbar-nav > .active > a:focus {
+  color: #555;
+  background-color: #BABABB;
+}
+.smm {
+  background-color: #D9853B;
+}
+
+.smm:hover {
+ background-color: #D9855B; 
+}
+
+.tagbutton:hover {
+  text-decoration: line-through;
+}
+.center {
+ float: none;
+ margin-left: auto;
+ margin-right: auto;
+}
+.navbar{
+  background-color:#ECECEA;
+  margin: 0px;
+}
+
+.h1{
+  padding: 0px;
+  color: black;
+}
+.footer {
+  position: absolute;
+  padding: 10px;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 80px;
+  background-color: #ECECEA;
+}
+.container{
+  padding:10px;
+}
+
+.tagsearch {
+  background-color: grey;
+    border-bottom-left-radius: 10px; 
+  border-bottom-right-radius: 10px;
+}
+
+.showingall {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.tagsearchentry {
+  margin-top:5px;
+
+}
+.tagsearchentry button {
+  margin-top: 5px;
+}
