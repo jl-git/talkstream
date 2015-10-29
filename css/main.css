@@ -85,7 +85,7 @@ body {
 
 
 .piegraph {
-  height: calc(100% - 210px);
+  height: calc(100% - 80px);
 }
 svg {
   width: 100%;
