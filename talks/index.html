@@ -58,7 +58,7 @@
 
 
   <div class="alltalks center">
-  <div  ng-show="showallentries || displayflag(x.Tags)" class="center rowentry container" ng-class="{{ x.Tags }}" ng-repeat="x in names">
+  <div ng-init="showreport=false" ng-mouseleave="showreport=false" ng-mouseenter="showreport=true" ng-show="showallentries || displayflag(x.Tags)" class="center rowentry container" ng-class="{{ x.Tags }}" ng-repeat="x in names">
     <div class ="topic row">
       {{ x.Topic }}
     </div>
@@ -87,10 +87,12 @@
         {{ y }}
         </button>
       </span>
+
     </div>
 
-    <button class="btn btn-info"  ng-show="showme" ng-click="showme=false">Show less</button> 
-    <button class="smm btn btn-info"  ng-hide="showme" ng-click="showme=true">Show me more!</button> 
+    <button class="btn btn-warning"  ng-show="showme" ng-click="showme=false">Show less</button> 
+    <button class="btn btn-warning"  ng-hide="showme" ng-click="showme=true">Show me more!</button> 
+    <a class="btn btn-danger report" href='mailto:admin@superseminar.com?Subject=Problem about "{{x.Topic}}"' ng-show="showreport" ng-init="showreport=false">Report a Problem</a> 
     </div>
   </div>
 
