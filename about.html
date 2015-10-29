@@ -10,13 +10,6 @@
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
   <script src="../js/ssc.js"></script>
   <link rel="stylesheet" href="../css/main.css">
-  <script src="http://d3js.org/d3.v3.min.js"></script>
-    <style>
-      html{
-        height: 100%;
-      }
-  </style>
-
 </head>
 
 
@@ -24,28 +17,37 @@
   <nav class="navbar navbar-default">
    <div class="container-fluid">
       <div class="navbar-header">
-        <a class="navbar-brand" href="index.html">Super Seminar Scraper</a>
+        <a class="navbar-brand" href="http://localhost/talkstream/talks">Super Seminar Scraper</a>
       </div>
       <div>
         <ul class="nav navbar-nav">
           <li><a href="index.html">Home</a></li>
           <li><a href="map.html">Map</a></li>
-          <li class="active"><a href="trending.html">Trending &amp Analysis</a></li> 
-          <li><a href="about.html">About</a></li> 
+          <li><a href="trending.html">Trending &amp Analysis</a></li> 
+          <li class="active"><a href="about.html">About</a></li> 
         </ul>
       </div>
     </div>
   </nav>
 
+<div class="container">
+  <p>
+  <h3> Algorithm </h3>
+  We are using some magic to get all seminar information...
+  </p>
+
+  <p>
+  <h3>A List of Our source</h3>
+    <ul>
+      <li>Cornell Univeristy</li>
+      <li>Standford University</li>
+    </ul>
+  </p>
 
 
-<div ng-app="mypie" ng-controller="pieCtrl" ng-init="init()" class="container piegraph">
-<h3> A pie for Computer Science Seminars...</h3>
-  <button class="randomize">randomize</button>
+
 
 </div>
-
-
 
 
 
@@ -56,7 +58,6 @@
   </div>
 </footer>
 
-  <script src="../js/pi_graph.js"></script>
 
 </body>
 </html>

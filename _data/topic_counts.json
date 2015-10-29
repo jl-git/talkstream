@@ -11,26 +11,6 @@
     "Tags" : ["Paul Hovland", "Scientific Computing", "University of Arizona"]
   },
   {
-    "Topic" : "Program Analysis and Transformation for Scientific Computing",
-    "Speaker" : "Paul Hovland, Ph.D., LANS Director and Senior Computer Scientist, Argonne National Laboratory",
-    "Time" : "2015-10-07 09:30",
-    "Venue" : "Gould-Simpson 701",
-    "University" : "University of Arizaon",
-    "URL" : "https://www.cs.arizona.edu/news/events/evdetail.html?ID=681",
-    "Description" : "We discuss several applications of program analysis and transformation in scientific computing. We begin with a discussion of automatic empirical performance tuning (autotuning) techniques and strategies for dealing with multiple, competing objectives (such as time and power). We continue with a discussion of automatic (also called algorithmic) differentiation techniques for computing the derivatives of functions defined by computer subprograms. We conclude with a consideration of program verification, with an emphasis on proving the equivalence of two implementations.",
-    "Tags" : ["Paul Hovland", "Scientific Computing", "University of Arizona"]
-  },
-  {
-    "Topic" : "Program Analysis and Transformation for Scientific Computing",
-    "Speaker" : "Paul Hovland, Ph.D., LANS Director and Senior Computer Scientist, Argonne National Laboratory",
-    "Time" : "2015-10-07 09:30",
-    "Venue" : "Gould-Simpson 701",
-    "University" : "University of Arizaon",
-    "URL" : "https://www.cs.arizona.edu/news/events/evdetail.html?ID=681",
-    "Description" : "We discuss several applications of program analysis and transformation in scientific computing. We begin with a discussion of automatic empirical performance tuning (autotuning) techniques and strategies for dealing with multiple, competing objectives (such as time and power). We continue with a discussion of automatic (also called algorithmic) differentiation techniques for computing the derivatives of functions defined by computer subprograms. We conclude with a consideration of program verification, with an emphasis on proving the equivalence of two implementations.",
-    "Tags" : ["Paul Hovland", "Scientific Computing", "University of Arizona"]
-  },
-  {
     "Topic" : "Resolving Reproducibility in Computational Science: Tools, Policy, and Culture",
     "Speaker" : "Victoria Stodden, Ph.D.",
     "Time" : "2015-10-08 11:00",
@@ -39,7 +19,6 @@
     "URL" : "https://www.cs.arizona.edu/news/events/evdetail.html?ID=680",
     "Description" : "As the use of computation becomes ever more pervasive in all fields of research, we are faced with new questions regarding the nature of the scholarly record. Massive data pervades scientific research and analysis algorithms are being combined in increasingly complicated processing pipelines. Much of the knowledge being generated with the aid computers today does not have the same quality as traditional knowledge, and traditional standards of review and dissemination do not generally enable verification of the published findings. In this talk, Dr. Stodden will unpack the concept of reproducibility into three sub-concepts: empirical, statistical, and computational [1]. She will then discuss approaches to resolving irreproducibility including: computational tools and publishing modalities [2], policy initiatives and Intellectual Property law [3], dissemination standards, and cultural considerations. Some of this research is described in her co-edited books, Implementing Reproducible Research and Privacy, Big Data, and the Public Good. Time permitting, she will discuss current policy initiatives emanating from the Whitehouse and funding agencies.",
     "Tags" : ["Victoria Stodden", "Cornell University"]
-
   }
 ],
 "speakers": [
