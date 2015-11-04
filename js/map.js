@@ -38,11 +38,11 @@ function load_target(json) {
 
         if (universities.hasOwnProperty(json['records'][i]['University'])) {
         //  console.log(u_location[json['records'][i]['University']]);
-          universities[json['records'][i]['University']][3] = universities[json['records'][i]['University']][3].concat("<br>" + json['records'][i]['Topic']);
+          universities[json['records'][i]['University']][3] = universities[json['records'][i]['University']][3].concat("<br>" + json['records'][i]['Time'] + " " + json['records'][i]['Topic']);
           universities[json['records'][i]['University']][4] = universities[json['records'][i]['University']][4]  + 1;
 
         } else {
-          universities[json['records'][i]['University']] = [ u_location[json['records'][i]['University']][0], u_location[json['records'][i]['University']][1], 1, json['records'][i]['Topic'], 1];
+          universities[json['records'][i]['University']] = [ u_location[json['records'][i]['University']][0], u_location[json['records'][i]['University']][1], 1, json['records'][i]['Time'] + " " + json['records'][i]['Topic'], 1];
         }
 
 

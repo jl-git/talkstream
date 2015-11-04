@@ -85,7 +85,7 @@ body {
 
 
 .piegraph {
-  height: calc(100% - 80px);
+  height: 600px;
 }
 svg {
   width: 100%;
@@ -101,4 +101,37 @@ polyline{
   stroke: black;
   stroke-width: 2px;
   fill: none;
+}
+
+
+svg g {
+  margin: auto;
+}
+
+
+.barchart {
+  height: 650px;
+}
+
+.bar {
+  fill: steelblue;
+}
+
+.bar:hover {
+  fill: brown;
+}
+
+.axis {
+  font: 10px sans-serif;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.x.axis path {
+  display: none;
 }

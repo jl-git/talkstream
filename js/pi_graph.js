@@ -14,14 +14,14 @@ app.controller('pieCtrl', function($scope, $http) {
 
     $scope.init = function() {
 
-      for(var i = 0; i < $scope.topic_labels.length; i++) {
-         var obj = $scope.topic_labels[i];
-        console.log(obj);
-      }
-      for(var i = 0; i < $scope.topic_counts.length; i++) {
-         var obj = $scope.topic_counts[i];
-        console.log(obj);
-      }
+      // for(var i = 0; i < $scope.topic_labels.length; i++) {
+      //    var obj = $scope.topic_labels[i];
+      //   console.log(obj);
+      // }
+      // for(var i = 0; i < $scope.topic_counts.length; i++) {
+      //    var obj = $scope.topic_counts[i];
+      //   console.log(obj);
+      // }
       var svg = d3.select(".piegraph")
         .append("svg")
         .append("g")
@@ -67,7 +67,6 @@ app.controller('pieCtrl', function($scope, $http) {
 
         $scope.cur_month = $scope.topic_counts[$scope.pie_index]['Date'];
         $scope.$apply();
-
 
         var labels = color.domain();
         return labels.map(function(label){

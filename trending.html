@@ -12,9 +12,8 @@
   <link rel="stylesheet" href="css/main.css">
   <script src="http://d3js.org/d3.v3.min.js"></script>
   <script src="js/pi_graph.js"></script>
-
     <style>
-      html{
+      body{
         height: 100%;
       }
   </style>
@@ -42,16 +41,17 @@
 
 
 <div ng-app="mypie" ng-controller="pieCtrl" class="container piegraph">
-<h3> A pie for Computer Science Seminars...<span ng-bind="cur_month">{{}}</span></h3>
-  <button ng-click="" class="prev btn">prev month</button>
-  <button ng-click="" class="next btn">next month></button>
-
-
-
-
+<h3> A pie for Computer Science Seminars in <span ng-bind="cur_month"></span></h3>
+  <button ng-click="" class="next btn">prev month</button>
+  <button ng-click="" class="prev btn">next month</button>
 </div>
 
 
+
+
+<div class="barchart container">
+<h3> A Bar Chart for the Numbers of Computer Science Seminars</h3>
+</div>
 
 <footer class="footer">
   <div class="container">
@@ -59,6 +59,7 @@
   </div>
 </footer>
 
+  <script src="js/bar_graph.js"></script>
 
 </body>
 </html>
