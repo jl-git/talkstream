@@ -12,6 +12,7 @@ app.controller('customersCtrl', function($scope, $http) {
 			$scope.showallentries = true;
 			$scope.filterstring = [];
 			$scope.alltags = [];
+			$scope.allspeakers = [];
 		};
 
 		$scope.initAllTags = function(entri) {
@@ -22,7 +23,10 @@ app.controller('customersCtrl', function($scope, $http) {
 			}
 		};
 
-		$scope.updateTags = function() {
+		$scope.initAllSpeakers = function(entri) {
+			if ($scope.allspeakers.indexOf(entri) < 0) {
+				$scope.allspeakers.push(entri);	
+			}
 		};
 
 		$scope.showall = function(){
@@ -36,6 +40,8 @@ app.controller('customersCtrl', function($scope, $http) {
 			}
 			$scope.showallentries = false;
 			$scope.searchWord = null;
+
+			console.log($scope.filterstring);
 		};
 
 		$scope.removefilter =function(tag) {
@@ -66,14 +72,15 @@ app.controller('customersCtrl', function($scope, $http) {
 				return false;
 		}
 
-		$scope.displayflag = function(tags) {
+		$scope.displayflag = function(tags, speaker) {
 			for (var i = 0; i < $scope.filterstring.length; i++) {
 				if ($scope.filterstring[i] === undefined)
 					continue;
-				if (tags.indexOf($scope.filterstring[i]) < 0) {
+				if (tags.indexOf($scope.filterstring[i]) < 0 && speaker.indexOf($scope.filterstring[i])) {
 					return false;
 				}
 			}
+			
 			return true;
 		};
 	}

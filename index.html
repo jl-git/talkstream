@@ -9,6 +9,9 @@
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
   <script src="js/ssc.js"></script>
+
+  <script src="js/acute.select/acute.select.js"></script>
+  <link rel="stylesheet" href="js/acute.select/acute.select.css">
   <link rel="stylesheet" href="css/main.css">
 </head>
 
@@ -32,11 +35,24 @@
 <div ng-app="myapp" ng-controller="customersCtrl" ng-init="init()"> 
   <div class="tagsearch center container">
     <div ng-repeat="x in names">
-      <div ng-init="initAllTags(x.Tags)">
+      <div ng-init="initAllTags(x.Tags);initAllSpeakers(x.Speaker)">
       </div>
     </div>
 
-    <input type="text" ng-model="searchWord" ng-change="updateTags()" class="tagsearchentry form-control" placeholder="Search Tags or Speakers Here!">
+
+    <input type="text" ng-model="searchword_speaker" class="tagsearchentry form-control" placeholder="Search Speakers Here!">
+
+
+    <div class="tagsearchentry">
+      <span ng-show="containSearchWord(z, searchword_speaker)" ng-repeat="z in allspeakers">
+        <button class="btn btn-primary btn-xs" ng-click="addfilter(z)">
+          {{ z }}
+        </button>
+      </span>
+    </div>
+
+
+    <input type="text" ng-model="searchWord" class="tagsearchentry form-control" placeholder="Search Tags Here!">
     
     <div class="tagsearchentry">
       <span ng-show="containSearchWord(z, searchWord)" ng-repeat="z in alltags">
@@ -58,7 +74,7 @@
 
 
   <div class="alltalks center">
-  <div ng-init="showreport=false" ng-mouseleave="showreport=false" ng-mouseenter="showreport=true" ng-show="showallentries || displayflag(x.Tags)" class="center rowentry container" ng-class="{{ x.Tags }}" ng-repeat="x in names">
+  <div ng-init="showreport=false" ng-mouseleave="showreport=false" ng-mouseenter="showreport=true" ng-show="showallentries || displayflag(x.Tags, x.Speaker)" class="center rowentry container" ng-class="{{ x.Tags }}" ng-class="{{ x.Speaker }}" ng-repeat="x in names">
     <div class ="topic row">
       {{ x.Topic }}
     </div>
