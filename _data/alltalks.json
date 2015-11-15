@@ -41,6 +41,16 @@
     "Tags" : ["Harvard University", "Machine Learning"]
   },
   {
+    "Topic" : "Concrete Applications of Submodular Theory in Machine Learning",
+    "Speaker" : "Jeffrey A. Bilmes",
+    "Time" : "2015-11-5 17:15",
+    "Venue" : "Maxwell Dworkin G115",
+    "University" : "Harvard University",
+    "URL" : "https://www.seas.harvard.edu/calendar/event/85331",
+    "Description" : "Machine learning is one of the most promising areas within computer science that has the potential to address many of society’s challenges.  It is important, however, to develop machine learning constructs that are simple to define, mathematically rich, naturally suited to real-world applications, and scalable to large problem instances.  Convexity and graphical models are two such broad frameworks that are highly successful, but there are still many problem areas for which neither is suitable.  This talk will discuss submodularity, a third such framework that is becoming more popular.  Despite having been a key concept in economics, discrete mathematics, and optimization for over 100 years, submodularity is a relatively recent phenomenon in machine learning.  We are now seeing a surprisingly diverse set of real-world problems in machine learning to which submodularity is applicable.  In this talk, we will cover some of the more prominent examples, drawing often from the speaker's own work.  This includes applications in dynamic graphical models, clustering, summarization, computer vision, natural language processing, parallel computing, and computational biology.  We will see how submodularity leads to efficient and scalable algorithms while simultaneously guaranteeing high-quality solutions; in addition, we will demonstrate how these concrete applications have advanced and contributed to the purely mathematical study of submodularity.",
+    "Tags" : ["Harvard University", "Machine Learning"]
+  },
+  {
     "Topic" : "Rethinking Memory System Design for Data-Intensive Computing",
     "Speaker" : "Onur Mutlu",
     "Time" : "2015-09-23 17:15",
@@ -53,11 +63,19 @@
 ],
 "speakers": [
   {
-    "name" : "Paul Hovland",
+    "Name" : "Paul Hovland",
+    "Affiliation" : "University of Arizona"
+  },
+    {
+    "Name" : "Jeffrey A. Bilmes",
+    "Affiliation" : "University of Arizona"
+  },
+    {
+    "Name" : "Emina Torlak",
     "Affiliation" : "University of Arizona"
   },
   {
-    "name" : "Victoria Stodden",
+    "Name" : "Onur Mutlu",
     "Affiliation" : "Google"
   }
 ]

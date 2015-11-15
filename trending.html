@@ -11,17 +11,47 @@
   <script src="js/ssc.js"></script>
   <link rel="stylesheet" href="css/main.css">
   <script src="http://d3js.org/d3.v3.min.js"></script>
-  <script src="js/pi_graph.js"></script>
+  <script src="js/d3.layout.cloud.js"></script>
+
     <style>
-      body{
+      body {
         height: 100%;
       }
+      #wordcloud {
+/*        border: 1px solid black;
+*/        height: 500px;
+      }
+
+      #wordcloud svg {
+/*        border: 1px solid black;*/
+        height: 400px;
+        width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      #piegraph svg {
+/*        border: 1px solid black;
+*/        height: 500px;
+        width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      #barchart svg {
+/*        border: 1px solid black;
+*/        height: 500px;
+        width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
   </style>
 
 </head>
 
 
-<body>
+<body ng-app="myVis">
   <nav class="navbar navbar-default">
    <div class="container-fluid">
       <div class="navbar-header">
@@ -38,32 +68,24 @@
     </div>
   </nav>
 
-
-<div id="vis" class="container">
-<h3> A Word Cloud</h3>
+<div ng-controller="wordcloudCtrl" id="wordcloud" class="container">
+<h3>A Word Cloud For {{wcSpeaker}}</h3>
+      <label for="sel2">Select a Speaker to see the His/Her Word Cloud!</label>
+      <select class="form-control" name="wcSpeaker" ng-change="updateWC()" ng-model="wcSpeaker">
+        <option ng-repeat="x in speakers" value="{{x.Name}}">{{x.Name}}</option>
+      </select>
+      <svg></svg>
 </div>
 
-
-<div ng-app="mypie" ng-controller="pieCtrl" class="container piegraph">
-<h3> A pie for Computer Science Seminars in <span ng-bind="cur_month"></span></h3>
+<div ng-controller="pieCtrl" class="container piegraph" id="piegraph">
+<h3>A pie for Computer Science Seminars in <span ng-bind="cur_month"></span></h3>
   <button ng-click="" class="next btn">prev month</button>
   <button ng-click="" class="prev btn">next month</button>
 </div>
 
-
-<script src="js/cloud.min.js"></script>
-
-
-<div class="barchart container">
-<h3> A Bar Chart for the Numbers of Computer Science Seminars</h3>
+<div class="barchart container" id="barchart">
+<h3>A Bar Chart for the Numbers of Computer Science Seminars</h3>
 </div>
-
-
-
-
-
-
-
 
 <footer class="footer">
   <div class="container">
@@ -71,7 +93,8 @@
   </div>
 </footer>
 
-  <script src="js/bar_graph.js"></script>
+<script src="js/vis.js"></script>
+
 
 </body>
 </html>

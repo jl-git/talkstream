@@ -9,14 +9,23 @@ app.controller('wordcloudCtrl', function($scope, $http) {
       $scope.init();
     });
 
-    $scope.init = function() {
+
+    $scope.initAllSpeakers = function(entri) {
+      if ($scope.allspeakers.indexOf(entri) < 0) {
+        $scope.allspeakers.push(entri); 
+      }
+    };
+
+    $scope.updateWC = function() {
+      $scope.drawWC($scope.getWordlist($scope.wcSpeaker));
+    };
 
 
+    $scope.drawWC = function(wordlist) {
       var fill = d3.scale.category20();
 
-      d3.layout.cloud().size([300, 300])
-        .words([
-          ".NET", "Silverlight", "ddd", "CSS3", "HTML5", "JavaScript", "SQL","C#"].map(function(d) {
+      d3.layout.cloud().size([800, 400])
+        .words(wordlist.map(function(d) {
           return {text: d, size: 10 + Math.random() * 50};
         }))
         .rotate(function() { return 0; })
@@ -26,10 +35,12 @@ app.controller('wordcloudCtrl', function($scope, $http) {
         .start();
 
       function draw(words) {
-      d3.select("#wordcloud").append("svg")
+      // delete last word cloud
+      d3.select("#wordcloud svg").html("")  
+      d3.select("#wordcloud svg")
 
         .append("g")
-          .attr("transform", "translate(150,150)")
+          .attr("transform", "translate(400,200)")
         .selectAll("text")
           .data(words)
         .enter().append("text")
@@ -41,13 +52,37 @@ app.controller('wordcloudCtrl', function($scope, $http) {
             return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
           })
           .text(function(d) { return d.text; });
-
       }
+    }
 
+    $scope.getWordlist = function(speaker) {
+      $scope.corpus = "";
 
-   } 
+      angular.forEach($scope.talks, function(value, key) {
+        if (value.Speaker == speaker) {
+          $scope.corpus += (value.Description);
+
+        }
+      });
+
+      var result = $scope.corpus.split(" ");
+      var filter_result = [];
+
+      angular.forEach(result, function(value, key) {
+        console.log(key);
+        if (value.length >= 3) {
+           filter_result.push(value);
+        }
+      });
+
+      return filter_result;
+    }
+
+    $scope.init = function() {
+      $scope.wcSpeaker = $scope.speakers[0].Name;
+      $scope.updateWC($scope.wcSpeaker);
+    }
 });
-
 
 app.controller('pieCtrl', function($scope, $http) {
   $http.get("_data/topic_counts.json")
@@ -276,3 +311,65 @@ app.controller('pieCtrl', function($scope, $http) {
       };
     }
 });
+
+
+var margin = {top: 20, right: 20, bottom: 30, left: 40},
+    width = 750 - margin.left - margin.right,
+    height = 500 - margin.top - margin.bottom;
+
+var x = d3.scale.ordinal()
+    .rangeRoundBands([0, width], .1);
+
+var y = d3.scale.linear()
+    .range([height, 0]);
+
+var xAxis = d3.svg.axis()
+    .scale(x)
+    .orient("bottom");
+
+var yAxis = d3.svg.axis()
+    .scale(y)
+    .orient("left")
+    .ticks(12);
+
+var svg = d3.select(".barchart").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+d3.tsv("_data/month_total.tsv", type, function(error, data) {
+  if (error) throw error;
+
+  x.domain(data.map(function(d) { return d.month; }));
+  y.domain([0, d3.max(data, function(d) { return d.count; })]);
+
+  svg.append("g")
+      .attr("class", "x axis")
+      .attr("transform", "translate(0," + height + ")")
+      .call(xAxis);
+
+  svg.append("g")
+      .attr("class", "y axis")
+      .call(yAxis)
+    .append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 6)
+      .attr("dy", ".71em")
+      .style("text-anchor", "end")
+      .text("Count");
+
+  svg.selectAll(".bar")
+      .data(data)
+    .enter().append("rect")
+      .attr("class", "bar")
+      .attr("x", function(d) { return x(d.month); })
+      .attr("width", x.rangeBand())
+      .attr("y", function(d) { return y(d.count); })
+      .attr("height", function(d) { return height - y(d.count); });
+});
+
+function type(d) {
+  d.count = +d.count;
+  return d;
+}
