@@ -1,5 +1,8 @@
 var app = angular.module('myVis', []);
 
+//
+// Word Cloud
+//
 app.controller('wordcloudCtrl', function($scope, $http) {
   $http.get("_data/alltalks.json")
   .success(
@@ -8,7 +11,6 @@ app.controller('wordcloudCtrl', function($scope, $http) {
       $scope.talks = response.records;
       $scope.init();
     });
-
 
     $scope.initAllSpeakers = function(entri) {
       if ($scope.allspeakers.indexOf(entri) < 0) {
@@ -19,7 +21,6 @@ app.controller('wordcloudCtrl', function($scope, $http) {
     $scope.updateWC = function() {
       $scope.drawWC($scope.getWordlist($scope.wcSpeaker));
     };
-
 
     $scope.drawWC = function(wordlist) {
       var fill = d3.scale.category20();
@@ -65,14 +66,34 @@ app.controller('wordcloudCtrl', function($scope, $http) {
         }
       });
 
+      var stopwords = ["a", "about", "above", "after", "again", "against", "all", "am", "an", "and", "any", "are", "aren't", "as", "at", "be", "because", "been", "before", "being", "below", "between", "both", "but", "by", "can't", "cannot", "could", "couldn't", "did", "didn't", "do", "does", "doesn't", "doing", "don't", "down", "during", "each", "few", "for", "from", "further", "had", "hadn't", "has", "hasn't", "have", "haven't", "having", "he", "he'd", "he'll", "he's", "her", "here", "here's", "hers", "herself", "him", "himself", "his", "how", "how's", "i", "i'd", "i'll", "i'm", "i've", "if", "in", "into", "is", "isn't", "it", "it's", "its", "itself", "let's", "me", "more", "most", "mustn't", "my", "myself", "no", "nor", "not", "of", "off", "on", "once", "only", "or", "other", "ought", "our", "ours", "ourselves", "out", "over", "own", "same", "shan't", "she", "she'd", "she'll", "she's", "should", "shouldn't", "so", "some", "such", "than", "that", "that's", "the", "their", "theirs", "them", "themselves", "then", "there", "there's", "these", "they", "they'd", "they'll", "they're", "they've", "this", "those", "through", "to", "too", "under", "until", "up", "very", "was", "wasn't", "we", "we'd", "we'll", "we're", "we've", "were", "weren't", "what", "what's", "when", "want", "wants","when's", "where", "where's", "which", "while", "who", "who's", "whom", "why", "why's", "with", "won't", "wanted", "would", "wouldn't", "you", "you'd", "you'll", "you're", "you've", "your", "yours", "yourself", "yourselves"];
+
       var result = $scope.corpus.split(" ");
       var filter_result = [];
 
       angular.forEach(result, function(value, key) {
-        console.log(key);
-        if (value.length >= 3) {
-           filter_result.push(value);
+
+        value = value.toLowerCase().trim();
+
+        // delete non-alphabet at the front
+        while ((value.length > 0) && (value[0] < 'a' || value[0] > 'z')) {
+          value = value.substring(1, value.length);
         }
+
+        // delete non-alphabet at the tail
+        while ((value.length > 0) && (value[value.length - 1] < 'a' || value[value.length - 1] > 'z')) {
+          value = value.substring(0, value.length - 1);
+        }
+
+        if (value.length >= 3) {
+          // filter stop words
+          if (stopwords.indexOf(value.trim()) < 0) {
+            filter_result.push(value.toUpperCase());
+          } else {
+            console.log(value);
+          }
+        }
+
       });
 
       return filter_result;
@@ -80,10 +101,13 @@ app.controller('wordcloudCtrl', function($scope, $http) {
 
     $scope.init = function() {
       $scope.wcSpeaker = $scope.speakers[0].Name;
-      $scope.updateWC($scope.wcSpeaker);
+      $scope.updateWC();
     }
 });
 
+//
+// Donut Graph
+//
 app.controller('pieCtrl', function($scope, $http) {
   $http.get("_data/topic_counts.json")
   .success(
@@ -312,7 +336,9 @@ app.controller('pieCtrl', function($scope, $http) {
     }
 });
 
-
+//
+// Bar Chart Generation
+//
 var margin = {top: 20, right: 20, bottom: 30, left: 40},
     width = 750 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;

@@ -9,113 +9,223 @@
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
   <script src="js/ssc.js"></script>
-
-  <script src="js/acute.select/acute.select.js"></script>
-  <link rel="stylesheet" href="js/acute.select/acute.select.css">
   <link rel="stylesheet" href="css/main.css">
+  <style>
+    .alltalks .glyphicon {
+      display: inline-block;
+      font-size: 90%;
+      -ms-transform: rotate(0deg); /* IE 9 */
+      -webkit-transform: rotate(0deg); /* Safari */
+      transform: rotate(0deg);
+    }
+  </style>
+
 </head>
 
-<body>
-  <nav class="navbar navbar-default">
-   <div class="container-fluid">
+<body ng-app="sscApp" ng-controller="homepageCtrl" ng-init="init()">
+  <div onClick='hideHelp()' id="fade" class="black_overlay"></div>
+  <div id="light" class="white_content">  
+    <span class="glyphicons glyphicons-remove"></span>
+    <span onClick='hideHelp()' class="pointer glyphicon glyphicon-remove" style="font-size:120%"></span>
+   
+    <h3>The seminar list<span class="glyphicons glyphicons-circle-remove"></span></h3>
+    <div style="line-height: 160%;">
+      <p>
+        Each seminar is displayed as a <span class="inlineBox" style="background-color: #74AFAD; color: white">list item</span>. At first, some brief information (title, speaker, time, tags) will be shown. You can click <span class="inlineBox" style="background-color: #f0ad4e; color: white; border-radius:3px">Show me more!</span> to check more information (venue, URL, description/abstract).
+      </p>
+      <p>
+        When the mouse hovers on a <span class="inlineBox" style="background-color: #74AFAD; color: white">list item</span>, a <span class="inlineBox" style="background-color: #d9534f; color: white; border-radius:3px">Report a Problem</span> button will show up. You can use this button to report wrong or inappropriate content. The button will redirect the you to the send an email.
+      </p>
+      <p>
+        Several <span class="inlineBox" style="background-color: #337ab7; color: white; border-radius:3px">tags</span> that associate with this seminar will be displayed in the <span class="inlineBox" style="background-color: #74AFAD; color: white">list item</span>. You can click on the <span class="inlineBox" style="background-color: #337ab7; color: white; border-radius:3px">tags</span> to see <span class="inlineBox" style="background-color: #74AFAD; color: white">all seminars</span> that has the same <span class="inlineBox" style="background-color: #337ab7; color: white; border-radius:3px">tags</span>.
+      </p>
+      <p>
+        You are able to filter/search the seminars by different <span class="inlineBox" style="background-color: #337ab7; color: white; border-radius:3px">tags</span> using the top <span class="inlineBox" style="background-color: #808080; color: white; border-radius: 0px 0px 3px 3px">search bar</span>. At first, a part of the <span class="inlineBox" style="background-color: #337ab7; color: white; border-radius:3px">tags</span> will displayed, you can click on the <span class="inlineBox" style="background-color: #337ab7; color: white; border-radius:3px">tags</span> to apply the filter. If you cannot find the desired <span class="inlineBox" style="background-color: #337ab7; color: white; border-radius:3px">tags</span>, you can type in the <span class="inlineBox" style="border-radius:3px; border: 1px lightgrey solid; color: grey">text area</span> to search the <span class="inlineBox" style="background-color: #337ab7; color: white; border-radius:3px">tags</span>. The search system will filter the <span class="inlineBox" style="background-color: #337ab7; color: white; border-radius:3px">tags</span> in real time as you are typing. For example, when you typed "l", all the <span class="inlineBox" style="background-color: #337ab7; color: white; border-radius:3px">tags</span> with the letter "l" will show up.
+      </p>
+      <p>
+        Once you fond the tag, you can click the <span class="inlineBox" style="background-color: #337ab7; color: white; border-radius:3px">tags</span> to add the <span class="inlineBox" style="background-color: #f0ad4e; color: white; border-radius:3px">filters</span>. Current applied <span class="inlineBox" style="background-color: #f0ad4e; color: white; border-radius:3px">filters</span> will be shown below the search bar, you can click it to cancel that <span class="inlineBox" style="background-color: #f0ad4e; color: white; border-radius:3px; text-decoration: line-through;">filter</span>. You can also click the <span class="inlineBox" style="background-color: #d9534f; color: white; border-radius:3px">Show All Seminars</span> to clear all applied <span class="inlineBox" style="background-color: #f0ad4e; color: white; border-radius:3px">filters</span>. You can applied multiple <span class="inlineBox" style="background-color: #f0ad4e; color: white; border-radius:3px">filters</span>. For example, you can search all machine learning seminars in Cornell University by clicking <span class="inlineBox" style="background-color: #337ab7; color: white; border-radius:3px">clicking machine learning</span> and <span class="inlineBox" style="background-color: #337ab7; color: white; border-radius:3px">Cornell University</span>.
+      </p>
+    </div>
+  </div>
+
+  <!-- Fixed navbar -->
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div>
       <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
         <a class="navbar-brand" href="index.html">Super Seminar Scraper</a>
       </div>
-      <div>
+
+      <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
           <li class="active"><a href="index.html">Home</a></li>
           <li><a href="map.html">Map</a></li>
           <li><a href="trending.html">Trending &amp Analysis</a></li> 
           <li><a href="about.html">About</a></li> 
+          <!-- <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Action</a></li>
+              <li><a href="#">Another action</a></li>
+              <li><a href="#">Something else here</a></li>
+              <li role="separator" class="divider"></li>
+              <li class="dropdown-header">Nav header</li>
+              <li><a href="#">Separated link</a></li>
+              <li><a href="#">One more separated link</a></li>
+            </ul>
+          </li> -->
         </ul>
-      </div>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a class="pointer" onClick="showHelp()">Help</a></li>
+          
+        </ul>
+      </div><!--/.nav-collapse -->
     </div>
   </nav>
 
-<div ng-app="myapp" ng-controller="customersCtrl" ng-init="init()"> 
-  <div class="tagsearch center container">
-    <div ng-repeat="x in names">
-      <div ng-init="initAllTags(x.Tags);initAllSpeakers(x.Speaker)">
+  <div> 
+    <div class="tagsearch center container">
+      <div ng-repeat="x in talks">
+        <div ng-init="initAllTags(x.Tags);initAllSpeakers(x.Speaker)">
+        </div>
+      </div>
+
+      <input type="text" ng-model="searchword_speaker" class="tagsearchentry form-control" placeholder="Search Speakers Here!">
+      <div id="speakerTags" class="tagsearchentry">
+        <span ng-show="containSearchWord(z, searchword_speaker)" ng-repeat="z in allspeakers">
+          <button class="btn btn-primary btn-xs" ng-click="addfilter(z)">
+            {{ z }}
+          </button>
+        </span>
+      </div>
+
+      <input type="text" ng-model="searchWord" class="tagsearchentry form-control" placeholder="Search Tags Here!">
+      
+      <div class="tagsearchentry">
+        <span ng-show="containSearchWord(z, searchWord)" ng-repeat="z in alltags">
+          <button class="btn btn-primary btn-xs" ng-click="addfilter(z)">
+            {{ z }}
+          </button>
+        </span>
+      </div>
+
+    </div>
+
+    <div class=" center container">
+      <h1 ng-show="showallentries" class="showingall">Showing all Seminars</h1>
+      <button ng-show="!showallentries" class="btn btn-danger" ng-click="showall()">Show All Seminars</button>
+      <span ng-repeat="tag in filterstring">
+        <button class="tagbutton btn btn-warning" ng-click="removefilter(tag)">{{ tag }}</button> 
+      </span>
+    </div>
+
+    <div class="alltalks center">
+    <div id={{$index}} ng-init="showreport=false" ng-mouseleave="showreport=false" ng-mouseenter="showreport=true" ng-show="showallentries || displayflag(x.Tags, x.Speaker)" class="center rowentry container"  ng-repeat="x in talks">
+      <div class ="topic row">
+        {{ x.Topic }}
+      </div>
+      <div class="speaker row">
+      {{ x.Speaker }}
+      </div>
+      <div class="time row">
+      {{ x.Time }}
+      </div>
+
+      <div class="moreInfo">
+        <div class="venue row">
+        {{ x.Venue }}
+        </div>
+        <div class="university row">
+        {{ x.University }}
+        </div>
+        <div class="url row">
+        <a ng-href="{{ x.URL }}">{{ x.URL }}</a>
+        </div>
+        <div class="description row animate-hide check-element ">
+        {{ x.Description }}
+        </div>
+
+      </div>
+
+      <div class="tags row">
+        <span ng-repeat="y in x.Tags">
+          <button class="btn btn-primary btn-xs" ng-click="addfilter(y)">
+          {{ y }}
+          </button>
+        </span>
+
+      </div>
+
+      <button class="btn btn-warning" onClick='showMore(parentNode)'>Show me more! <span class="glyphicon glyphicon-menu-down"></span></button> 
+      <a class="btn btn-danger report" href='mailto:admin@superseminar.com?Subject=Problem about "{{x.Topic}}"' ng-show="showreport" ng-init="showreport=false">Report a Problem</a> 
       </div>
     </div>
 
-
-    <input type="text" ng-model="searchword_speaker" class="tagsearchentry form-control" placeholder="Search Speakers Here!">
-    <div class="tagsearchentry">
-      <span ng-show="containSearchWord(z, searchword_speaker)" ng-repeat="z in allspeakers">
-        <button class="btn btn-primary btn-xs" ng-click="addfilter(z)">
-          {{ z }}
-        </button>
-      </span>
+  <footer class="footer">
+    <div class="container">
+      <p class="text-muted">An 2015 M.Eng Project...</p>
     </div>
+  </footer>
 
+  <script>
+    if (getCookie('visited_home')=='') {
+      showHelp();
+      document.cookie = 'visited_home' + "=" + '1' + "; " + '10000';
+    }
 
-    <input type="text" ng-model="searchWord" class="tagsearchentry form-control" placeholder="Search Tags Here!">
-    
-    <div class="tagsearchentry">
-      <span ng-show="containSearchWord(z, searchWord)" ng-repeat="z in alltags">
-        <button class="btn btn-primary btn-xs" ng-click="addfilter(z)">
-          {{ z }}
-        </button>
-      </span>
-    </div>
+    function showMore(elem) {
+      var degree = 0;
+      if ($("#" + elem.id + " .moreInfo").css("display") == 'none') {
+        degree = 180;
+      }
+      $("#" + elem.id + " .moreInfo").slideToggle("slow");
+      AnimateRotate(degree, "#" + elem.id + " .glyphicon");
+    }
 
-  </div>
+    function getCookie(cname) {
+      var name = cname + "=";
+      var ca = document.cookie.split(';');
+      for(var i=0; i<ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1);
+          if (c.indexOf(name) == 0) return c.substring(name.length,c.length);
+        }
+      return "";
+    }
 
-  <div class=" center container">
-    <h1 ng-show="showallentries" class="showingall">Showing all Seminars</h1>
-    <button ng-show="!showallentries" class="btn btn-danger" ng-click="showall()">Show All Seminars</button>
-    <span ng-repeat="tag in filterstring">
-      <button class="tagbutton btn btn-warning" ng-click="removefilter(tag)">{{ tag }}</button> 
-    </span>
-  </div>
+    function showHelp() {
+      $('#light').fadeIn("slow");
+      $('#fade').fadeIn("slow");
+    }
 
+    function hideHelp() {
+      $('#light').fadeOut("slow");
+      $('#fade').fadeOut("slow");
+    }
 
-  <div class="alltalks center">
-  <div ng-init="showreport=false" ng-mouseleave="showreport=false" ng-mouseenter="showreport=true" ng-show="showallentries || displayflag(x.Tags, x.Speaker)" class="center rowentry container" ng-class="{{ x.Tags }}" ng-class="{{ x.Speaker }}" ng-repeat="x in names">
-    <div class ="topic row">
-      {{ x.Topic }}
-    </div>
-    <div class="speaker row">
-    {{ x.Speaker }}
-    </div>
-    <div class="time row">
-    {{ x.Time }}
-    </div>
-    <div ng-show="showme" class="venue row">
-    {{ x.Venue }}
-    </div>
-    <div ng-show="showme" class="university row">
-    {{ x.University }}
-    </div>
-    <div ng-show="showme" class="url row">
-    <a ng-href="{{ x.URL }}">{{ x.URL }}</a>
-    </div>
-    <div ng-show="showme" class="description row animate-hide check-element ">
-    {{ x.Description }}
-    </div>
+    function AnimateRotate(angle, selector) {
+    // caching the object for performance reasons
+    // we use a pseudo object for the animation
+    // (starts from `0` to `angle`), you can name it as you want
+      $elem = $(selector);
 
-    <div class="tags row">
-      <span ng-repeat="y in x.Tags">
-        <button class="btn btn-primary btn-xs" ng-click="addfilter(y)">
-        {{ y }}
-        </button>
-      </span>
-
-    </div>
-
-    <button class="btn btn-warning"  ng-show="showme" ng-click="showme=false">Show less</button> 
-    <button class="btn btn-warning"  ng-hide="showme" ng-click="showme=true">Show me more!</button> 
-    <a class="btn btn-danger report" href='mailto:admin@superseminar.com?Subject=Problem about "{{x.Topic}}"' ng-show="showreport" ng-init="showreport=false">Report a Problem</a> 
-    </div>
-  </div>
-
-<footer class="footer">
-  <div class="container">
-    <p class="text-muted">An 2015 M.Eng Project...</p>
-  </div>
-</footer>
-
-
+      $elem.animate({deg: angle}, {
+          duration: 600,
+          step: function(now) {
+              // in the step-callback (that is fired each step of the animation),
+              // you can use the `now` paramter which contains the current
+              // animation-position (`0` up to `angle`)
+              $elem.css({'transform': 'rotate(' + now + 'deg)'});
+              $elem.css({'-ms-transform': 'rotate(' + now + ')deg'});
+              $elem.css({'-webkit-transform': 'rotate(' + now + ')deg'});
+          }
+      });
+    }
+  </script>
 </body>
 </html>

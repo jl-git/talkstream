@@ -1,26 +1,16 @@
-
-
-
 function initMap() {
   $.getJSON( "_data/alltalks.json", function( json ) {
     var universities = load_target(json);
-
-
 
     var map = new google.maps.Map(document.getElementById('map'), {
       zoom: 4,
       center: {lat: 35.477371, lng: -96.523195}
     });
-
     setMarkers(map, universities);
-
   });
 }
 
-
 function load_target(json) {
-
-
     var u_location = {
     'University of Arizona' : [32.231899, -110.950921],
     'Cornell University' : [42.446834, -76.480093],
@@ -32,10 +22,7 @@ function load_target(json) {
     var universities = {};
 
     for (i = 0; i < json['records'].length; i++) {
-
       if (u_location.hasOwnProperty(json['records'][i]['University'])) {
-
-
         if (universities.hasOwnProperty(json['records'][i]['University'])) {
         //  console.log(u_location[json['records'][i]['University']]);
           universities[json['records'][i]['University']][3] = universities[json['records'][i]['University']][3].concat("<br>" + json['records'][i]['Time'] + " " + json['records'][i]['Topic']);
@@ -44,13 +31,10 @@ function load_target(json) {
         } else {
           universities[json['records'][i]['University']] = [ u_location[json['records'][i]['University']][0], u_location[json['records'][i]['University']][1], 1, json['records'][i]['Time'] + " " + json['records'][i]['Topic'], 1];
         }
-
-
       }
     }
   return universities;
 }
-
 
 function setMarkers(map, universities) {
   var image = {
@@ -68,13 +52,9 @@ function setMarkers(map, universities) {
     type: 'circle'
   };
 
-
   for (var university in universities) {
-
     console.log(university[0]);
-
     infowindow = new google.maps.InfoWindow();
-
     marker = new google.maps.Marker({
       position: {lat: universities[university][0], lng: universities[university][1]},
       map: map,

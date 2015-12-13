@@ -4,9 +4,27 @@ html {
 }
 body {
   /* Margin bottom by footer height */
+  padding-top: 50px;
   height: 100%;
   padding-bottom: 80px;
 }
+
+
+
+.moreInfo {
+  display: none;
+}
+
+.inlineBox {
+  white-space:nowrap;
+  background-color: white;
+  padding:2px;
+}
+
+.pointer:hover {
+  cursor: pointer;
+}
+
 .row {
   margin: 0px 0px 5px 0px;
   color: white;
@@ -45,6 +63,11 @@ body {
 .navbar{
   background-color:#ECECEA;
   margin: 0px;
+  border: 0px;
+}
+
+.navbar-right {
+  margin-right: 20px;
 }
 
 .h1{
@@ -75,18 +98,19 @@ body {
   margin-bottom: 5px;
 }
 .tagsearchentry {
+  overflow: scroll;
   margin-top:5px;
-
 }
+
+#speakerTags {
+  height: 27px;
+  overflow: scroll;
+}
+
 .tagsearchentry button {
   margin-top: 5px;
 }
 
-
-
-.piegraph {
-  height: 600px;
-}
 svg {
   display: block;
   width: 100%;
@@ -104,11 +128,37 @@ polyline{
   fill: none;
 }
 
-
 svg g {
   margin: auto;
 }
 
+  .black_overlay{
+    display: none;
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    z-index: 100000;
+    -moz-opacity: 0.5;
+    opacity:.50;
+    filter: alpha(opacity=50);
+  }
+  .white_content {
+    display: none;
+    color: black;
+    position: absolute;
+    top: 70px;
+    left: 10%;
+    width: 80%;
+/*    height: 80%;
+*/    padding: 20px 20px;
+    border-radius: 20px;
+    background-color: white;
+    z-index: 100001;
+    overflow: auto;
+  }
 
 .barchart {
   height: 650px;

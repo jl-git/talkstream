@@ -1,10 +1,11 @@
-var app = angular.module('myapp', []);
+var app = angular.module('sscApp', []);
 
-app.controller('customersCtrl', function($scope, $http) {
+app.controller('homepageCtrl', function($scope, $http) {
 	$http.get("_data/alltalks.json")
 	.success(
 		function(response) {
-			$scope.names = response.records;
+			$scope.talks = response.records;
+			$scope.printIndex = 0;
 		}
 		);
 

@@ -12,27 +12,33 @@
   <link rel="stylesheet" href="css/main.css">
 </head>
 
-
 <body>
-  <nav class="navbar navbar-default">
-   <div class="container-fluid">
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div>
       <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
         <a class="navbar-brand" href="index.html">Super Seminar Scraper</a>
       </div>
-      <div>
+
+      <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
           <li><a href="index.html">Home</a></li>
           <li><a href="map.html">Map</a></li>
           <li><a href="trending.html">Trending &amp Analysis</a></li> 
-          <li class="active"><a href="about.html">About</a></li> 
+          <li class="active"><a href="about.html">About</a></li>
         </ul>
-      </div>
+      </div><!--/.nav-collapse -->
     </div>
   </nav>
 
 <div class="container">
   <p>
-  <h3> Algorithm </h3>
+  <h3>Algorithm</h3>
   We are using some magic to get all seminar information...
   </p>
 
@@ -52,6 +58,8 @@
     </ul>
   </p>
 
+  <h4>Contacts</h4>
+  <p>Jiankun Lu, jl3387 cornell edu</p>
 
 </div>
 
