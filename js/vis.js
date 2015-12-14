@@ -89,9 +89,6 @@ app.controller('wordcloudCtrl', function($scope, $http) {
           // filter stop words
           if (stopwords.indexOf(value.trim()) < 0) {
             filter_result.push(value.toUpperCase());
-          } else {
-            console.log(value);
-          }
         }
 
       });
