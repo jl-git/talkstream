@@ -9,7 +9,10 @@ body {
   padding-bottom: 80px;
 }
 
-
+.help_pic {
+  width: 75.8%;
+  display: block;
+}
 
 .moreInfo {
   display: none;
@@ -152,17 +155,13 @@ svg g {
     top: 70px;
     left: 10%;
     width: 80%;
-/*    height: 80%;
-*/    padding: 20px 20px;
+    max-height: 80%;
+    padding: 20px 20px;
     border-radius: 20px;
     background-color: white;
     z-index: 100001;
     overflow: auto;
   }
-
-.barchart {
-  height: 650px;
-}
 
 .bar {
   fill: steelblue;

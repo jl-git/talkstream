@@ -41,8 +41,7 @@ app.controller('homepageCtrl', function($scope, $http) {
 			}
 			$scope.showallentries = false;
 			$scope.searchWord = null;
-
-			console.log($scope.filterstring);
+			$scope.searchword_speaker = null;
 		};
 
 		$scope.removefilter =function(tag) {
