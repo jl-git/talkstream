@@ -1,3 +1,4 @@
+// rotate the selector elem with the angle
 function AnimateRotate(angle, selector) {
     // caching the object for performance reasons
     // we use a pseudo object for the animation
@@ -14,6 +15,7 @@ function AnimateRotate(angle, selector) {
     });
 }
 
+// read a cookie named cname
 function getCookie(cname) {
 var name = cname + "=";
 var ca = document.cookie.split(';');
@@ -25,11 +27,13 @@ for(var i=0; i<ca.length; i++) {
   return "";
 }
 
+// show the help window on homepage and map page
 function showHelp() {
   $('#light').fadeIn("slow");
   $('#fade').fadeIn("slow");
 }
 
+// hide the help window on homepage and map page
 function hideHelp() {
   $('#light').fadeOut("slow");
   $('#fade').fadeOut("slow");

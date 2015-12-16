@@ -7,21 +7,27 @@ app.controller('wordcloudCtrl', function($scope, $http) {
   $http.get("_data/alltalks.json")
   .success(
     function(response) {
+      // read data from alltalks.json
       $scope.speakers = response.speakers;
       $scope.talks = response.records;
       $scope.init();
     });
 
+    // add all unique speakers
     $scope.initAllSpeakers = function(entri) {
       if ($scope.allspeakers.indexOf(entri) < 0) {
         $scope.allspeakers.push(entri); 
       }
     };
 
+    // this function will first call getWordlist by the speaker user selected
+    // (from the dropdown menu), then pass the wordlist to drawWC to
+    // update/redraw the word cloud
     $scope.updateWC = function() {
       $scope.drawWC($scope.getWordlist($scope.wcSpeaker));
     };
 
+    // draw the word cloud with the wordlist
     $scope.drawWC = function(wordlist) {
       var fill = d3.scale.category20();
 
@@ -56,9 +62,12 @@ app.controller('wordcloudCtrl', function($scope, $http) {
       }
     }
 
+    // construct wordlist for the speaker
     $scope.getWordlist = function(speaker) {
       $scope.corpus = "";
 
+      // concat the speaker's all seminar description/abstract to a
+      // corpus
       angular.forEach($scope.talks, function(value, key) {
         if (value.Speaker == speaker) {
           $scope.corpus += (value.Description);
@@ -66,27 +75,27 @@ app.controller('wordcloudCtrl', function($scope, $http) {
         }
       });
 
+      // a stop word list contains common meaningless English words
       var stopwords = ["a", "about", "above", "after", "again", "against", "all", "am", "an", "and", "any", "are", "aren't", "as", "at", "be", "because", "been", "before", "being", "below", "between", "both", "but", "by", "can't", "cannot", "could", "couldn't", "did", "didn't", "do", "does", "doesn't", "doing", "don't", "down", "during", "each", "few", "for", "from", "further", "had", "hadn't", "has", "hasn't", "have", "haven't", "having", "he", "he'd", "he'll", "he's", "her", "here", "here's", "hers", "herself", "him", "himself", "his", "how", "how's", "i", "i'd", "i'll", "i'm", "i've", "if", "in", "into", "is", "isn't", "it", "it's", "its", "itself", "let's", "me", "more", "most", "mustn't", "my", "myself", "no", "nor", "not", "of", "off", "on", "once", "only", "or", "other", "ought", "our", "ours", "ourselves", "out", "over", "own", "same", "shan't", "she", "she'd", "she'll", "she's", "should", "shouldn't", "so", "some", "such", "than", "that", "that's", "the", "their", "theirs", "them", "themselves", "then", "there", "there's", "these", "they", "they'd", "they'll", "they're", "they've", "this", "those", "through", "to", "too", "under", "until", "up", "very", "was", "wasn't", "we", "we'd", "we'll", "we're", "we've", "were", "weren't", "what", "what's", "when", "want", "wants","when's", "where", "where's", "which", "while", "who", "who's", "whom", "why", "why's", "with", "won't", "wanted", "would", "wouldn't", "you", "you'd", "you'll", "you're", "you've", "your", "yours", "yourself", "yourselves"];
 
       var result = $scope.corpus.split(" ");
       var filter_result = [];
 
       angular.forEach(result, function(value, key) {
-
         value = value.toLowerCase().trim();
 
-        // delete non-alphabet at the front
+        // remove non-alphabet char at the front
         while ((value.length > 0) && (value[0] < 'a' || value[0] > 'z')) {
           value = value.substring(1, value.length);
         }
 
-        // delete non-alphabet at the tail
+        // remove non-alphabet char at the tail
         while ((value.length > 0) && (value[value.length - 1] < 'a' || value[value.length - 1] > 'z')) {
           value = value.substring(0, value.length - 1);
         }
 
         if (value.length >= 3) {
-          // filter stop words
+          // remove stop words
           if (stopwords.indexOf(value.trim()) < 0) {
             filter_result.push(value.toUpperCase());
           }
@@ -104,7 +113,7 @@ app.controller('wordcloudCtrl', function($scope, $http) {
 });
 
 //
-// Donut Graph
+// Pie/Donut Graph
 //
 app.controller('pieCtrl', function($scope, $http) {
   $http.get("_data/topic_counts.json")
@@ -112,7 +121,9 @@ app.controller('pieCtrl', function($scope, $http) {
     function(response) {
       $scope.topic_counts = response.records;
       $scope.topic_labels = response.labels;
+      // the month displayed in the title
       $scope.cur_month = "1900-01"
+      // index indicate the current position of records
       $scope.pie_index = 0;
       $scope.init();
 
@@ -150,38 +161,49 @@ app.controller('pieCtrl', function($scope, $http) {
 
       svg.attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 
+      // read labels as key
       var key = function(d){ return d.data.label; };
       var color = d3.scale.category20()
         .domain($scope.topic_labels)
 
+      // return the new data need to be draw
       function refreshData (){
+        // check if pie_index out of bound
         if ($scope.pie_index >= $scope.topic_counts.length) {
           $scope.pie_index = 0;
         } else if ($scope.pie_index < 0) {
           $scope.pie_index = $scope.topic_counts.length - 1;
         }
 
+        // read the current month from the first position of an entry ('Date')
         $scope.cur_month = $scope.topic_counts[$scope.pie_index]['Date'];
+        // force angular.js to change the month displayed in the title
         $scope.$apply();
 
+        // return the new data of the new pie_index
         var labels = color.domain();
         return labels.map(function(label){
-
           return { label: label, value: $scope.topic_counts[$scope.pie_index][label] }
         });
       }
 
+      // repaint the graph with animation in change
       change(refreshData());
 
+      // when click the two buttons
       d3.select(".next")
         .on("click", function(){
+          // decrement the index
           $scope.pie_index=$scope.pie_index-1;
+          // repaint with the data of new pie_index
           change(refreshData());
         });
 
       d3.select(".prev")
         .on("click", function(){
+          // increment
           $scope.pie_index=$scope.pie_index+1;
+          // repaint
           change(refreshData());
         });
 
@@ -197,6 +219,7 @@ app.controller('pieCtrl', function($scope, $http) {
           });
       }
 
+      // repaint and animate with new data
       function change(data) {
         var duration = 150;
         var data0 = svg.select(".slices").selectAll("path.slice")
@@ -362,6 +385,7 @@ var svg = d3.select(".barchart").append("svg")
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
+// read the tsv file
 d3.tsv("_data/month_total.tsv", type, function(error, data) {
   if (error) throw error;
 
