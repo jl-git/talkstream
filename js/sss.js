@@ -1,4 +1,4 @@
-var app = angular.module('sscApp', []);
+var app = angular.module('sssApp', []);
 
 app.controller('homepageCtrl', function($scope, $http) {
 	$http.get("_data/alltalks.json")
