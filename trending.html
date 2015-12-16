@@ -8,7 +8,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
-  <script src="js/ssc.js"></script>
+  <script src="js/helper.js"></script>
   <link rel="stylesheet" href="css/main.css">
   <script src="http://d3js.org/d3.v3.min.js"></script>
   <script src="js/d3.layout.cloud.js"></script>
@@ -155,22 +155,6 @@ $(document).ready(function(){
   });
 });
 
-
-function AnimateRotate(angle, selector) {
-    // caching the object for performance reasons
-    // we use a pseudo object for the animation
-    // (starts from `0` to `angle`), you can name it as you want
-    $elem = $(selector);
-
-    $elem.animate({deg: angle}, {
-        duration: 600,
-        step: function(now) {
-            $elem.css({'transform': 'rotate(' + now + 'deg)'});
-            $elem.css({'-ms-transform': 'rotate(' + now + ')deg'});
-            $elem.css({'-webkit-transform': 'rotate(' + now + ')deg'});
-        }
-    });
-}
 </script>
 
 </body>
