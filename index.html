@@ -177,17 +177,27 @@
   </footer>
 
   <script>
+    // check if this is the first visit
     if (getCookie('visited_home')=='') {
       showHelp();
       document.cookie = 'visited_home' + "=" + '1' + "; " + '10000';
     }
 
+    // slide the more info div by given elem.
     function showMore(elem) {
+      // the rotation degree for the small arrow
       var degree = 0;
+
+      // use the id as selector, if currently the div is not displayed
+      // set the rotation degree to 180 (upside down)
       if ($("#" + elem.id + " .moreInfo").css("display") == 'none') {
         degree = 180;
       }
+
+      // toggle the moreInfor div
       $("#" + elem.id + " .moreInfo").slideToggle("slow");
+
+      // rotate the small arrow
       AnimateRotate(degree, "#" + elem.id + " .glyphicon");
     }
   </script>
