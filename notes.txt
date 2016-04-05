@@ -1,0 +1,76 @@
+Login:
+
+chmod 400 super_seminar_scrapper.pem
+
+sudo ssh -i super_seminar_scrapper.pem ec2-user@ec2-52-37-122-183.us-west-2.compute.amazonaws.com
+
+http://ec2-52-37-122-183.us-west-2.compute.amazonaws.com:8080/talkstream/
+
+find / -type d -name "Catalina" -print 2>/dev/null
+
+/etc/tomcat8/Catalina
+
+* * * * * /usr/bin/python /var/lib/tomcat8/webapps/hello.py >> /var/tmp/out.log 2>&1
+
+* * * * * sudo /usr/bin/python /var/lib/tomcat8/webapps/ROOT/courseWebPageCrawler/run_script.py
+
+ls -l /var/lib/tomcat8/webapps/hello.py
+
+sudo chmod 755 /var/lib/tomcat8/webapps/hello.py
+
+
+sudo wget http://pypi.python.org/packages/source/p/pip/pip-1.1.tar.gz#md5=62a9f08dd5dc69d76734568a6c040508
+sudo tar -xvf pip*.gz
+cd pip*
+sudo python setup.py install
+sudo pip install gcc
+sudo pip install Scrapy
+
+http://stackoverflow.com/questions/35474981/how-to-install-scrapy-on-amazon-linux-ami
+
+http://stackoverflow.com/questions/30474487/error-when-installing-pandas-in-aws/34370478
+
+
+launch.sh
+
+#!/bin/bash
+AMI=ami-08111162
+NUM_INSTANCES=1
+aws configure set aws_access_key_id AKIAISOAOQKZPNRSDTCA
+aws configure set aws_secret_access_key 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
+aws configure set default.region us-east-1
+aws ec2 run-instances --image-id ${AMI} --count $NUM_INSTANCES --instance-type t2.micro --user-data file://install-my-app.sh --key-name CS5300_Proj1_bi49
+
+install-my-app.sh
+
+#!/bin/bash
+echo "Updating"
+yum update -y
+echo "Updated"
+aws configure set aws_access_key_id AKIAISOAOQKZPNRSDTCA
+aws configure set aws_secret_access_key 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
+aws configure set default.region us-east-1
+echo "AWS CONFIGURED"
+yum -y install tomcat8-webapps tomcat8-docs-webapp tomcat8-admin-webapps
+echo "TOMCAT INSTALLED"
+sudo wget http://pypi.python.org/packages/source/p/pip/pip-1.1.tar.gz#md5=62a9f08dd5dc69d76734568a6c040508
+sudo tar -xvf pip*.gz
+cd pip*
+sudo python setup.py install
+cd ..
+sudo rm -rf pip-1.1
+sudo rm -rf *.gz
+sudo dd if=/dev/zero of=/swapfile bs=1024 count=524288
+sudo chmod 600 /swapfile
+sudo mkswap /swapfile
+sudo swapon /swapfile
+sudo pip install Scrapy
+sudo pip install icalendar
+sudo pip install vobject
+
+* * * * * sudo /usr/bin/python /var/lib/tomcat8/webapps/talkstream/courseWebPageCrawler/run_script.py  >> /var/tmp/out.log 2>&1
+
+http://devoncmather.com/setting-aws-ec2-instance-lamp-git/
+
+cd solution: http://stackoverflow.com/questions/255414/why-doesnt-cd-work-in-a-bash-shell-script
+set cron job from probably .ebextensions or http://stackoverflow.com/questions/15470016/how-to-write-cron-job-in-aws-ec2-server

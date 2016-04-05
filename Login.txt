@@ -1,7 +1,0 @@
-Login:
-
-chmod 400 super_seminar_scrapper.pem
-
-sudo ssh -i super_seminar_scrapper.pem ec2-user@ec2-52-37-122-183.us-west-2.compute.amazonaws.com
-
-http://ec2-52-37-122-183.us-west-2.compute.amazonaws.com:8080/talkstream/

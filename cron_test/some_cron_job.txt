@@ -1,0 +1,3 @@
+# The newline at the end of this file is extremely important.  Cron won't run without it.
+* * * * * root /usr/bin/python /var/lib/tomcat8/webapps/ROOT/courseWebPageCrawler/run_script.py > /dev/null
+
