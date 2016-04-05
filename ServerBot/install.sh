@@ -28,6 +28,5 @@ scrapy -v
 sudo pip install icalendar
 sudo pip install vobject
 sudo yum -y install git-all
-sudo alias sss="cd /var/lib/tomcat8/webapps"
-sudo git clone https://github.com/jl-git/talkstream.git
+sudo git clone https://github.com/jl-git/talkstream.git /var/lib/tomcat8/webapps/talkstream
 sudo service tomcat8 start
