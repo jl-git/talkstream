@@ -18,7 +18,25 @@ cmu_url = "https://www.scs.cmu.edu/calendar"
 edu = "edu"
 all_records = []
 
-def date_handler(school_class, content, date_type,dist, Topic, Speaker, Time, Venue, University, URL, Description, Tags):
+url_to_school = dict()
+
+def add_url_to_school(key, value):
+    url_to_school[key] = value
+def get_school_from_url(url):
+    return url_to_school[url]
+
+school_data = dict()
+def add_school_data(key, value):
+    school_data[key] = value
+def get_school_data(key, value):
+    return school_data[key]
+def get_all_school_data():
+    return school_data
+
+def extract_html(sss, school_name, xpath_str):
+        return sss.get_school(school_name).get_response().xpath(xpath_str).extract()
+
+def date_handler(school_class, content, date_type, dist, Topic, Speaker, Time, Venue, University, URL, Description, Tags):
     for elt in content:
 
         cur_date_type = 'NO'
@@ -91,7 +109,7 @@ def create_date(Day, Month, Year):
 	d = datetime.date(Year, Month, Day)
 	return d
 
-def retrieve_element(to_find, elt, dist, delimeter, default, is_URL, reverse):
+def retrieve_element(to_find, elt, dist, delimeter, default_to_return, is_URL, reverse):
     if(not reverse):
         index = elt.find(to_find)
     else:

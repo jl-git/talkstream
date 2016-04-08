@@ -12,6 +12,8 @@ class CourseWebPage(Item):
     name = Field()
     description = Field()
     url = Field()
+    school_name = Field()
+    url_to_school = Field()
 
     topic = Field()
     speaker = Field()

@@ -5,7 +5,7 @@ import json
 import shared
 
 import scrapy
-from scrapy.spiders import CrawlSpider
+from scrapy.contrib.spiders import CrawlSpider
 from scrapy.selector import Selector
 from scrapy.http import HtmlResponse
 
@@ -14,11 +14,8 @@ from courseWebPageCrawler.items import CourseWebPage
 class CourseWebPageSpider(CrawlSpider):
 
     name = 'courseWebPageCrawler'
-    
-    school_name = ""
+
     start_urls = list()
-    school_data = dict()
-    url_to_school = dict()
     #start_urls = [shared.cornell_url, shared.uiuc_url, shared.berkeley_url, shared.uwash_url, shared.cmu_url]
     allowed_domains = [shared.edu]
     
@@ -29,20 +26,8 @@ class CourseWebPageSpider(CrawlSpider):
         import uwash
         import cmu
         import ical
-        import shared
 
         self.log('A response from %s just arrived!' % response.url)
-
-        copy = response.copy()
-        school_name = shared.url_to_school[response.url]
-        print school_name
-        shared.school_data[school_name].set_response(response)
-        #new_response.school_name = response.url
-        #print new_response.school_name
-        #school_name = url_to_school[response.url]
-        #print school_name
-        #school_name = self.url_to_school[response.url]
-        #self.school_data[school_name].set_response(response)
 
         if (response.url == shared.cornell_url):
             print "GOTCHAAAA --> CORNELL\n"
