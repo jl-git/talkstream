@@ -8,4 +8,4 @@ class Colloquia:
 		self.university = str()
 		self.url = str()
 		self.description = str()
-		self.tags = str()
+		self.tags = ""

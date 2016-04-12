@@ -5,6 +5,8 @@ from sss import SSS
 from school import School
 #from classes.dir import Dir
 
+import courseWebPageCrawler.spiders.shared
+
 cornell_url = "https://www.cs.cornell.edu/events/colloquium"
 uiuc_url = "http://cse.illinois.edu/news-events/seminars"
 berkeley_url = "http://www.eecs.berkeley.edu/Colloquium/"
@@ -12,11 +14,18 @@ uwash_url = "https://www.cs.washington.edu/events/colloquia"
 cmu_url = "https://www.scs.cmu.edu/calendar"
 #add new <school_url> here
 
-def execute(my_SSS, school_name):
-	school = my_SSS.get_school(school_name)
-	content_list = my_SSS.extract_content(school.get_name(),'//div[@class="content"]/p')
-	my_SSS.retrieve_element(content_list, "Month", ) #TODO
-	print content
+def execute(SSS, school_name):
+	#get school object stored for respective school from SSS(Super Seminar Scraper)
+	school = SSS.get_school(school_name)
+	#Extract an initial content list, the xpath provided has to be manually inspected/found
+	SSS.extract_content(school.get_name(),'//div[@class="content"]/p')
+	#gets a list equal to the size
+	SSS.filter_content(courseWebPageCrawler.spiders.shared.months)
+	print school.get_name()
+	school.set_name("HELLO")
+	print SSS.get_school(school_name).get_name()
+	#my_SSS.retrieve_element(content_list, my_SSS ) #TODO
+	#print content
 	#shared.date_handler('uiuc',content,"Month", 1, "", "", "", "NCSA Room 1040", "UIUC", "", "", "")
 	#uiuc.speaker_topic_url_handler(content)
 	#shared.add_to_all_records(uiuc.records[1:])

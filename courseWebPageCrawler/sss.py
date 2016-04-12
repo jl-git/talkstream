@@ -9,6 +9,8 @@ from courseWebPageCrawler.spiders.shared import add_url_to_school
 from courseWebPageCrawler.spiders.shared import add_school_data
 from courseWebPageCrawler.spiders.shared import get_all_school_data
 from courseWebPageCrawler.spiders.shared import extract_html
+from courseWebPageCrawler.spiders.shared import filter_list
+
 from extractor import Extractor
 
 class SSS:
@@ -19,6 +21,7 @@ class SSS:
         #metadata, raw_content, url
         self.school_data = dict()
         self.spider = CourseWebPageSpider(CrawlSpider)
+        self.content_list = list()
         
     def add_school(self, School):
         """
@@ -35,6 +38,11 @@ class SSS:
         if data:
             return data
         return -1
+    def get_content_list(self):
+        return self.content_list
+
+    #def import_school_data(self, school_data):
+    #    self.school_data = school_data
 
     def scrape_data(self):
         """
@@ -61,4 +69,7 @@ class SSS:
         #print self.school_data
 
     def extract_content(self, school_name, xpath_str):
-        return extract_html(self, school_name, xpath_str)
+        self.content_list = extract_html(self, school_name, xpath_str)
+
+    def filter_content(self, list_to_find):
+        self.content_list = filter_list(self.content_list, list_to_find)

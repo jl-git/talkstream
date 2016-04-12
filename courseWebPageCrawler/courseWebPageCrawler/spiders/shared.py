@@ -14,6 +14,9 @@ berkeley_url = "http://www.eecs.berkeley.edu/Colloquium/"
 uwash_url = "https://www.cs.washington.edu/events/colloquia"
 cmu_url = "https://www.scs.cmu.edu/calendar"
 
+months = ['january', 'february', 'march', 'april', 'may', 'june','july', 'august', 'september', 'october', 'november', 'december']
+days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+
 #list or allowed domains
 edu = "edu"
 all_records = []
@@ -35,6 +38,23 @@ def get_all_school_data():
 
 def extract_html(sss, school_name, xpath_str):
         return sss.get_school(school_name).get_response().xpath(xpath_str).extract()
+
+def filter_list(content, list_to_find):
+    """
+        Filters the list of contents by searching wether any one of the elements in the list_to_find exists
+        If it does not, removes the element from contents
+        returns a new list of contents
+
+        content: list of strings, the content to filter
+        list_to_find: list of strings, the filter list
+    """
+    new_content = list()
+    for item in content:
+        for elt in list_to_find:
+            if elt in item.lower():
+                new_content.append(item)
+    return new_content
+
 
 def date_handler(school_class, content, date_type, dist, Topic, Speaker, Time, Venue, University, URL, Description, Tags):
     for elt in content:
