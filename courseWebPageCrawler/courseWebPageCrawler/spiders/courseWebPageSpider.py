@@ -2,7 +2,7 @@ import os
 import re
 import urlparse
 import json
-import shared
+
 
 import scrapy
 from scrapy.spiders import CrawlSpider
@@ -10,6 +10,10 @@ from scrapy.selector import Selector
 from scrapy.http import HtmlResponse
 
 from courseWebPageCrawler.items import CourseWebPage
+
+from ..classes.shared import url_to_school
+from ..classes.shared import set_school_response
+from ..classes.shared import edu
 
 class CourseWebPageSpider(CrawlSpider):
 
@@ -20,23 +24,17 @@ class CourseWebPageSpider(CrawlSpider):
     school_data = dict()
     url_to_school = dict()
     #start_urls = [shared.cornell_url, shared.uiuc_url, shared.berkeley_url, shared.uwash_url, shared.cmu_url]
-    allowed_domains = [shared.edu]
+    allowed_domains = [edu]
     
     def parse(self, response):
-        import cornell
-        import uiuc
-        import berkeley
-        import uwash
-        import cmu
-        import ical
-        import shared
 
         self.log('A response from %s just arrived!' % response.url)
 
         copy = response.copy()
-        school_name = shared.url_to_school[response.url]
+        school_name = url_to_school[response.url]
         print school_name
-        shared.school_data[school_name].set_response(response)
+        set_school_response(school_name, response)
+        #shared.school_data[school_name].set_response(response)
         #new_response.school_name = response.url
         #print new_response.school_name
         #school_name = url_to_school[response.url]
@@ -44,6 +42,7 @@ class CourseWebPageSpider(CrawlSpider):
         #school_name = self.url_to_school[response.url]
         #self.school_data[school_name].set_response(response)
 
+        """
         if (response.url == shared.cornell_url):
             print "GOTCHAAAA --> CORNELL\n"
             #Extracts Dates of the Colloqiums 
@@ -96,8 +95,7 @@ class CourseWebPageSpider(CrawlSpider):
             #shared.send('cmu.json', cmu.records[1:])
 
         shared.writeToFile("alltalks.json")
-#Partial_: Berkeley, UIUC, Cornell, CMU,  Uwash 
-#Done_:
+        """
 
 """
 "records": [

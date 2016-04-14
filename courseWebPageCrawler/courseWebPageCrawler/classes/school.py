@@ -13,8 +13,9 @@ class School:
 		self.name = name
 		self.url = url
 		self.parser_type = "html"	#parser_type: "html" or "ical", string
- 		self.colloquia = list()
+ 		self.colloquim = list()
  		self.response = "NULL_RESPONSE"
+
 
 	def get_name(self):
 		return self.name
@@ -32,15 +33,26 @@ class School:
 		self.parser_type = parser_type
 
 	def push_colloquia(self, colloquia):
-		self.append(colloquia)
+		self.colloquim.append(colloquia)
 
 	def get_colloquia(self, index):
-		if (index < 0 or index >= len(self.colloquia)):
+		if (index < 0 or index >= len(self.colloquim)):
 			return -1
-		return self.colloquia[index]
+		return self.colloquim[index]
+
+	def get_colloquim(self):
+		return self.colloquim
 
 	def set_response(self, response):
 		self.response = response
 
 	def get_response(self):
 		return self.response
+
+	def set_venue(self, venue_name):
+		for elt in self.colloquim:
+			elt.set_metadata('venue', venue_name)
+
+	def set_official_name(self, official_name):
+		for elt in self.colloquim:
+			elt.set_metadata('university', official_name)

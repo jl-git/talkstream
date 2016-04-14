@@ -1,12 +1,8 @@
-import courseWebPageSpider
+import os, sys
 import urlparse
 import re
 import datetime
 import json
-import uiuc
-import cornell
-import berkeley
-
 
 cornell_url = "https://www.cs.cornell.edu/events/colloquium"
 uiuc_url = "http://cse.illinois.edu/news-events/seminars"
@@ -35,6 +31,8 @@ def get_school_data(key, value):
     return school_data[key]
 def get_all_school_data():
     return school_data
+def set_school_response(school_name, response):
+    school_data[school_name].set_response(response)
 
 def extract_html(sss, school_name, xpath_str):
         return sss.get_school(school_name).get_response().xpath(xpath_str).extract()
@@ -98,13 +96,19 @@ def day_converter(day):
     days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
     return days.index(day) + 1
 
-def extract_date(date_type, elt, dist, typ):
+def extract_date(elt, dist, date_type):
+
+    cur_date_type = 'NO'
+    if date_type == "Month": 
+        cur_date_type = is_month(elt)
+    elif date_type == "Day":
+        cur_date_type = is_day(elt)
 
     now = datetime.datetime.now()
     year = now.year
     
     dm = 0
-    index = elt.index(date_type) + len(date_type) + dist
+    index = elt.index(cur_date_type) + len(cur_date_type) + dist
     #print elt[index]
     while(elt[index].isnumeric()):
         #print elt[index]
@@ -112,13 +116,13 @@ def extract_date(date_type, elt, dist, typ):
         dm += int(elt[index])
         index += 1
   
-    if (typ == "Month"):
-        date_type = month_converter(date_type)
-        return datetime.date(int(year), date_type, dm)
-    elif (typ == "Day"):
-        date_type = day_converter(date_type)
+    if (date_type == "Month"):
+        cur_date_type = month_converter(cur_date_type)
+        return datetime.date(int(year), cur_date_type, dm)
+    elif (date_type == "Day"):
+        cur_date_type = day_converter(cur_date_type)
         #print datetime.date(int(year), dm, date_type)
-        return datetime.date(int(year), dm, date_type)
+        return str(datetime.date(int(year), dm, cur_date_type))
 
 def create_record(Topic, Speaker, Time, Venue, University, URL, Description, Tags):
 
@@ -143,7 +147,7 @@ def retrieve_element(to_find, elt, dist, delimeter, default_to_return, is_URL, r
             index -= dist
         #print elt[index]
     else:
-        return default
+        return default_to_return
 
     to_return_build = ""
     quotes_seen = 0
