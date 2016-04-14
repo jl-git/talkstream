@@ -19,6 +19,7 @@ class SSS:
         self.school_data = dict()
         self.spider = CourseWebPageSpider(CrawlSpider)
         self.content_list = list() #dummy variable held for parsing
+        self.filtered_content = list() #dummy variable held during parsing
         
     def add_school(self, School):
         """
@@ -37,6 +38,12 @@ class SSS:
         return -1
     def get_content_list(self):
         return self.content_list
+
+    def set_content_list(self, content_list):
+        self.content_list = content_list
+
+    def get_filtered_content(self):
+        return self.filtered_content
 
     def scrape_data(self):
         """
@@ -62,8 +69,8 @@ class SSS:
         self.content_list = shared.extract_html(self, school_name, xpath_str)
 
     def filter_content(self, school_name, list_to_find):
-        self.content_list = shared.filter_list(self.content_list, list_to_find)
-        for elt in self.content_list:
+        self.filtered_content = shared.filter_list(self.content_list, list_to_find)
+        for elt in self.get_filtered_content():
             self.get_school(school_name).push_colloquia(Colloquia())
 
     def retrieve_metadata(self, school_name, category, to_find, dist, delimeter, default_to_return, is_URL, reverse):
@@ -74,7 +81,7 @@ class SSS:
             count += 1
     def retrieve_dates(self, school_name, date_type, dist):
         count = 0
-        for elt in self.get_content_list():
+        for elt in self.get_filtered_content():
             metadata = shared.extract_date(elt, dist, date_type)
             self.get_school(school_name).get_colloquim()[count].set_metadata('date', str(metadata))
             count += 1

@@ -37,7 +37,10 @@ def uiuc_executor(my_SSS):
 	#gets a list equal to the size of elements we actually want, filters based on months
 	#if any of the elements of months exists it is not filtered out
 	my_SSS.filter_content(school.get_name(), months)
+
+	my_SSS.retrieve_dates(school.get_name(), "Month", 1)
 	
+	my_SSS.set_content_list(my_SSS.get_filtered_content())
 	#Topic
 	my_SSS.retrieve_metadata(school.get_name(), 'topic', '<em>', 4, '<','TBD', 0, 0)
 	#Speaker
@@ -45,7 +48,6 @@ def uiuc_executor(my_SSS):
 	#URL
 	my_SSS.retrieve_metadata(school.get_name(), 'url', 'ref=', 5, '<', "", 1, 0)
 	#Date
-	my_SSS.retrieve_dates(school.get_name(), "Month", 1)
 	
 	#Set Venue and Official School Name Manually from the school object
 	school.set_venue("NCSA Room 1030")

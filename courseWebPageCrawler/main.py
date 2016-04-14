@@ -7,7 +7,7 @@ from courseWebPageCrawler.classes.school import School
 
 from courseWebPageCrawler.schools.uiuc import uiuc_executor
 #from courseWebPageCrawler.schools.cornell import cornell_executor
-#from courseWebPageCrawler.schools.berkeley import berkeley_executor
+from courseWebPageCrawler.schools.berkeley import berkeley_executor
 #from courseWebPageCrawler.schools.uwash import uwash_executor
 #from courseWebPageCrawler.schools.cmu import cmu_executor
 
@@ -34,9 +34,9 @@ def main():
 	#feed our school to our super seminar scraper
 	my_SSS.add_school(uiuc)
 
-	#Berkeley
-	#berkeley = School("berkeley", berkeley_url)
-	#my_SSS.add_school(berkeley)
+
+	berkeley = School("berkeley", berkeley_url)
+	my_SSS.add_school(berkeley)
 
 	#Cornell
 	#cornell = School("cornell", cornell_url)
@@ -57,11 +57,12 @@ def main():
 	#Use Scrapy to get raw_html of website
 	my_SSS.scrape_data()
 
-	#TODO
+	#call executors once schools have been added and SSS object's scrape_data() method has been called
 	uiuc_executor(my_SSS)
+	berkeley_executor(my_SSS)
 
 	count = 0
-	for item in my_SSS.get_school('uiuc').get_colloquim():
+	for item in my_SSS.get_school('berkeley').get_colloquim():
 		print str(count) + ": "
 		print item.print_all()
 		count += 1
