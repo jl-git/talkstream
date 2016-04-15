@@ -7,28 +7,6 @@ import datetime
 from ..classes.sss import SSS
 from ..classes.shared import months
 
-"""
-#Records
-records = [dict()]
-
-def speaker_topic_url_handler(possible_colloquims):
-	#print possible_colloquims
-	count = 1
-	for elt in possible_colloquims:
-		month = shared.is_month(elt)
-		if (month == 'NO'):
-			continue
-
-		URL = shared.retrieve_element('ref=', elt, 5, '<', "", 1, 0)
-		Speaker = shared.retrieve_element('<br>', elt, 4, '<', "", 0, 0)
-		Topic = shared.retrieve_element('<em>', elt, 4, '<','TBD', 0, 0)
-
-		records[count]['URL'] = URL.encode("utf-8")
-		records[count]['Speaker'] = Speaker.encode("utf-8")
-		records[count]['Topic'] = Topic.encode("utf-8")
-		count += 1
-"""
-
 def uiuc_executor(my_SSS):
 	#get school object stored for respective school from SSS(Super Seminar Scraper)
 	school = my_SSS.get_school('uiuc')

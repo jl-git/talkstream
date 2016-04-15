@@ -44,6 +44,9 @@ class SSS:
 
     def get_filtered_content(self):
         return self.filtered_content
+        
+    def set_filtered_content(self, filtered_content, school_name):
+        self.filtered_content = filtered_content
 
     def scrape_data(self):
         """
@@ -85,4 +88,3 @@ class SSS:
             metadata = shared.extract_date(elt, dist, date_type)
             self.get_school(school_name).get_colloquim()[count].set_metadata('date', str(metadata))
             count += 1
-

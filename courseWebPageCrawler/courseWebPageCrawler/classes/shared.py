@@ -11,7 +11,7 @@ uwash_url = "https://www.cs.washington.edu/events/colloquia"
 cmu_url = "https://www.scs.cmu.edu/calendar"
 
 months = ['january', 'february', 'march', 'april', 'may', 'june','july', 'august', 'september', 'october', 'november', 'december']
-days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']
 
 #list or allowed domains
 edu = "edu"
@@ -49,10 +49,9 @@ def filter_list(content, list_to_find):
     new_content = list()
     for item in content:
         for elt in list_to_find:
-            if elt in item.lower():
+            if (item.lower().find(elt) != -1):
                 new_content.append(item)
     return new_content
-
 
 def date_handler(school_class, content, date_type, dist, Topic, Speaker, Time, Venue, University, URL, Description, Tags):
     for elt in content:
@@ -93,11 +92,10 @@ def month_converter(month):
 
 
 def day_converter(day):
-    days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
     return days.index(day) + 1
 
 def extract_date(elt, dist, date_type):
-
+    print "ELT IS: " + elt 
     cur_date_type = 'NO'
     if date_type == "Month": 
         cur_date_type = is_month(elt)
@@ -115,14 +113,22 @@ def extract_date(elt, dist, date_type):
         dm *= 10
         dm += int(elt[index])
         index += 1
-  
+    print "DM: " + str(dm)
+
+    if date_type == "Day":
+        day = 0
+        index += 1
+        while(elt[index].isnumeric()):
+            #print elt[index]
+            day *= 10
+            day += int(elt[index])
+            index += 1
+    print cur_date_type
     if (date_type == "Month"):
         cur_date_type = month_converter(cur_date_type)
         return datetime.date(int(year), cur_date_type, dm)
     elif (date_type == "Day"):
-        cur_date_type = day_converter(cur_date_type)
-        #print datetime.date(int(year), dm, date_type)
-        return str(datetime.date(int(year), dm, cur_date_type))
+        return str(datetime.date(int(year), dm, day))
 
 def create_record(Topic, Speaker, Time, Venue, University, URL, Description, Tags):
 
@@ -185,7 +191,6 @@ def add_to_all_records(records):
     for record in records:
         all_records.append(record)
 
-
 def writeToFile(fileName):
         to_send = dict()
         to_send["records"] = all_records
@@ -193,4 +198,3 @@ def writeToFile(fileName):
         #print "LOOK AT JSON HERE!!!: \n"   
         with open(working_dir + '/' + fileName, 'w') as fout:
             json.dump(to_send, fout)
-

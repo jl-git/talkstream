@@ -6,26 +6,7 @@ import datetime
 
 from ..classes.sss import SSS
 from ..classes.shared import months
-"""
-#Records
-records = [dict()]
 
-def speaker_topic_url_handler(possible_colloquims):
-	count = 0
-	for elt in possible_colloquims:
-
-		if (count%2):
-			#retrieve_element(to_find, elt, dist, default, is_URL)
-			URL = shared.retrieve_element('ref=', elt, 5, '<', "", 1, 0)
-			Topic = shared.retrieve_element('html">', elt, 6, '<', 'TBD', 0, 0)
-			Speaker = shared.retrieve_element('</a></strong>', elt, 1, '>', 'TBD', 0, 1)
-			
-			records[count/2 + 1]['URL'] = URL
-			records[count/2 + 1]['Speaker'] = Speaker
-			records[count/2 + 1]['Topic'] = Topic
-		count += 1
-
-"""
 def berkeley_filter(content_list):
 	new_list = list()
 	count = 0
@@ -34,6 +15,7 @@ def berkeley_filter(content_list):
 			new_list.append(elt)
 		count += 1
 	return new_list
+
 def berkeley_executor(my_SSS):
 	#get school object stored for respective school from SSS(Super Seminar Scraper)
 	school = my_SSS.get_school('berkeley')

@@ -34,13 +34,6 @@ class CourseWebPageSpider(CrawlSpider):
         school_name = url_to_school[response.url]
         print school_name
         set_school_response(school_name, response)
-        #shared.school_data[school_name].set_response(response)
-        #new_response.school_name = response.url
-        #print new_response.school_name
-        #school_name = url_to_school[response.url]
-        #print school_name
-        #school_name = self.url_to_school[response.url]
-        #self.school_data[school_name].set_response(response)
 
         """
         if (response.url == shared.cornell_url):

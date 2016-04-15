@@ -16,7 +16,6 @@ class School:
  		self.colloquim = list()
  		self.response = "NULL_RESPONSE"
 
-
 	def get_name(self):
 		return self.name
 
@@ -42,6 +41,9 @@ class School:
 
 	def get_colloquim(self):
 		return self.colloquim
+
+	def clear_colloquim(self):
+		self.colloquim = list()
 
 	def set_response(self, response):
 		self.response = response
