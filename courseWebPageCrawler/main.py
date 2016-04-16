@@ -8,7 +8,7 @@ from courseWebPageCrawler.classes.school import School
 from courseWebPageCrawler.schools.uiuc import uiuc_executor
 from courseWebPageCrawler.schools.cornell import cornell_executor
 from courseWebPageCrawler.schools.berkeley import berkeley_executor
-#from courseWebPageCrawler.schools.uwash import uwash_executor
+from courseWebPageCrawler.schools.uwash import uwash_executor
 #from courseWebPageCrawler.schools.cmu import cmu_executor
 
 #sys.path.append( /Users/batuinal1/Desktop/Git/talkstream/courseWebPageCrawler/courseWebPageCrawler/classes )
@@ -43,8 +43,8 @@ def main():
 	my_SSS.add_school(cornell)
 
 	#UWash
-	#uwash = School("uwash", uwash_url)
-	#my_SSS.add_school(uwash)
+	uwash = School("uwash", uwash_url)
+	my_SSS.add_school(uwash)
 
 	#CMU
 	#cmu = School("cmu", cmu_url)
@@ -58,12 +58,13 @@ def main():
 	my_SSS.scrape_data()
 
 	#call executors once schools have been added and SSS object's scrape_data() method has been called
-	uiuc_executor(my_SSS)
-	berkeley_executor(my_SSS)
-	cornell_executor(my_SSS)
+	#uiuc_executor(my_SSS)
+	#berkeley_executor(my_SSS)
+	#cornell_executor(my_SSS)
+	uwash_executor(my_SSS)
 
 	count = 0
-	for item in my_SSS.get_school('cornell').get_colloquim():
+	for item in my_SSS.get_school('uwash').get_colloquim():
 		print str(count) + ": "
 		print item.print_all()
 		count += 1

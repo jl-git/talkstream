@@ -71,6 +71,9 @@ class SSS:
     def extract_content(self, school_name, xpath_str):
         self.content_list = shared.extract_html(self, school_name, xpath_str)
 
+    def extract_ical_content(self, index, beg, is_broken, school_name):
+        self.set_filtered_content = shared.ical_get_content_from_url(self.get_content_list(), index, beg, is_broken, school_name)
+
     def filter_content(self, school_name, list_to_find):
         self.filtered_content = shared.filter_list(self.content_list, list_to_find)
         for elt in self.get_filtered_content():

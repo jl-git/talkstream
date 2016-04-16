@@ -12,19 +12,23 @@ import shared
 import uwash
 
 
-def get_calendar_url(content, index, beg):
+def ical_get_calendar_url(content, index, beg):
 	URL = shared.retrieve_element('ref=', content[index], 5, '<', "", 1, 0)
 	if (beg == ""): return URL
 	return beg + URL
 
-def get_content(URL, broken, class_name):
+def ical_get_content(URL, is_broken, school_name):
 	response = urllib2.urlopen(str(URL)).read()
 	
-	if (broken):
+	if (is_broken):
 		#classname.fix_ics
 		response = uwash.fix_ics(response)
 	content = Calendar.from_ical(response)
 	return content
+
+def ical_get_content_from_url(content, index, beg, is_broken, school_name):
+	return get_content(get_calendar_url(content, index, beg), is_broken, school_name)
+
 
 """
 response = urllib2.urlopen('https://www.scs.cmu.edu/calendar/export.ics')

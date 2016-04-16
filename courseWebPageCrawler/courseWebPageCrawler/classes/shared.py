@@ -4,6 +4,17 @@ import re
 import datetime
 import json
 
+import urllib2
+import icalendar
+from icalendar import Calendar, Event
+from icalendar import vDatetime
+from icalendar.parser import Contentline
+from icalendar.parser import Contentlines
+from datetime import datetime
+import vobject
+
+from ..schools.uwash import uwash_fix_ics
+
 cornell_url = "https://www.cs.cornell.edu/events/colloquium"
 uiuc_url = "http://cse.illinois.edu/news-events/seminars"
 berkeley_url = "http://www.eecs.berkeley.edu/Colloquium/"
@@ -186,6 +197,23 @@ def find_nth(haystack, needle, n):
         start = haystack.find(needle, start+len(needle))
         n -= 1
     return start
+
+def ical_get_calendar_url(content, index, beg):
+    URL = retrieve_element('ref=', content[index], 5, '<', "", 1, 0)
+    if (beg == ""): return URL
+    return beg + URL
+
+def ical_get_content(URL, is_broken, school_name):
+    response = urllib2.urlopen(str(URL)).read()
+    
+    if (is_broken):
+        #classname.fix_ics
+        exec("response = " + school_name +"_fix_ics(response)")
+    content = Calendar.from_ical(response)
+    return content
+
+def ical_get_content_from_url(content, index, beg, is_broken, school_name):
+    return ical_get_content(ical_get_calendar_url(content, index, beg), is_broken, school_name)
 
 def add_to_all_records(records):
     for record in records:
