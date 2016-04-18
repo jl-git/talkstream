@@ -3,7 +3,6 @@ import re
 import urlparse
 import json
 
-
 import scrapy
 from scrapy.spiders import CrawlSpider
 from scrapy.selector import Selector

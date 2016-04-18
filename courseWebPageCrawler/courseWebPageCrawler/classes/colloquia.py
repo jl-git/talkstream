@@ -18,7 +18,7 @@ class Colloquia:
 	def print_all(self):
 		print "TOPIC: " + self.topic
 		print "SPEAKER: " + self.speaker
-		print "DATE: " + self.date
+		print "DATE: " + str(self.date)
 		print "VENUE: " + self.venue
 		print "UNIV: " + self.university
 		print "URL: " + self.url

@@ -58,9 +58,9 @@ def main():
 	my_SSS.scrape_data()
 
 	#call executors once schools have been added and SSS object's scrape_data() method has been called
-	#uiuc_executor(my_SSS)
-	#berkeley_executor(my_SSS)
-	#cornell_executor(my_SSS)
+	uiuc_executor(my_SSS)
+	berkeley_executor(my_SSS)
+	cornell_executor(my_SSS)
 	uwash_executor(my_SSS)
 
 	count = 0

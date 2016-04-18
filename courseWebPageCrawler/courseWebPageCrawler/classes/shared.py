@@ -10,10 +10,10 @@ from icalendar import Calendar, Event
 from icalendar import vDatetime
 from icalendar.parser import Contentline
 from icalendar.parser import Contentlines
-from datetime import datetime
+
 import vobject
 
-from ..schools.uwash import uwash_fix_ics
+#from ..schools.uwash import uwash_fix_ics
 
 cornell_url = "https://www.cs.cornell.edu/events/colloquium"
 uiuc_url = "http://cse.illinois.edu/news-events/seminars"
@@ -210,6 +210,24 @@ def ical_get_content(URL, is_broken, school_name):
         #classname.fix_ics
         exec("response = " + school_name +"_fix_ics(response)")
     content = Calendar.from_ical(response)
+    return content
+
+def uwash_fix_ics(response):
+    removed_file = 0
+    for line in Contentlines.from_ical(response):
+        if ((not removed_file) and os.path.exists("uwash.ics")):
+            os.remove('uwash.ics')
+            removed_file = 1
+            
+        if line.find("X-WR-$CALNAME") != -1:
+            with open("uwash.ics","a+") as f:
+                f.write('X-WR-CALNAME:UW CSE Colloquium Calendar\n')
+                continue
+        with open("uwash.ics","a+") as f:
+            #print "HERE"
+            f.write(line.encode("utf-8"))
+            f.write('\n')
+    content = open('uwash.ics').read()
     return content
 
 def ical_get_content_from_url(content, index, beg, is_broken, school_name):
