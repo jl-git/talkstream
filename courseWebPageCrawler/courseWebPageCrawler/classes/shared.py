@@ -64,6 +64,19 @@ def filter_list(content, list_to_find):
                 new_content.append(item)
     return new_content
 
+def is_colloquim(category):
+    negative_category = ["Career", "Fun", "Special", "Distinguished", "Conference/Workshop"]
+    if category in negative_category:
+        return 0
+    return 1
+
+def is_formal(elt):
+    negative_category = ["Ph.D", "College", "University", "Engineer", "Engineering", "Institute", "Graduate", "Student", "Hall", "Campus", "Carnegie", "Professor", "Scientist", "Centers", "Auditorium", "Room", "Postdoctoral", "Fellow", "Abstract:", '[View', 'Microsoft', 'Researcher', 'Department', 'Instructor', 'Visiting', 'Partner']
+    for negative in negative_category:
+        if negative in elt:
+            return 1
+    return 0
+
 def date_handler(school_class, content, date_type, dist, Topic, Speaker, Time, Venue, University, URL, Description, Tags):
     for elt in content:
 
@@ -106,7 +119,7 @@ def day_converter(day):
     return days.index(day) + 1
 
 def extract_date(elt, dist, date_type):
-    print "ELT IS: " + elt 
+    #print "ELT IS: " + elt 
     cur_date_type = 'NO'
     if date_type == "Month": 
         cur_date_type = is_month(elt)
@@ -124,7 +137,7 @@ def extract_date(elt, dist, date_type):
         dm *= 10
         dm += int(elt[index])
         index += 1
-    print "DM: " + str(dm)
+    #print "DM: " + str(dm)
 
     if date_type == "Day":
         day = 0
@@ -134,7 +147,7 @@ def extract_date(elt, dist, date_type):
             day *= 10
             day += int(elt[index])
             index += 1
-    print cur_date_type
+    #print cur_date_type
     if (date_type == "Month"):
         cur_date_type = month_converter(cur_date_type)
         return datetime.date(int(year), cur_date_type, dm)
@@ -176,11 +189,11 @@ def retrieve_element(to_find, elt, dist, delimeter, default_to_return, is_URL, r
                     quotes_seen += 1
                     if quotes_seen == 1:    return to_return_build
                 else:
-                    return default   
+                    return default_to_return   
 
             to_return_build += elt[index]
             index += 1
-        if not to_return_build or len(to_return_build) < 2: return default
+        if not to_return_build or len(to_return_build) < 2: return default_to_return
         return to_return_build
     else:
 
@@ -188,7 +201,7 @@ def retrieve_element(to_find, elt, dist, delimeter, default_to_return, is_URL, r
             elt[index] + " " + to_return_build
             to_return_build = elt[index] + to_return_build
             index -= 1
-        if not to_return_build or len(to_return_build) < 2: return default
+        if not to_return_build or len(to_return_build) < 2: return default_to_return
         return to_return_build
 
 def find_nth(haystack, needle, n):
@@ -241,6 +254,5 @@ def writeToFile(fileName):
         to_send = dict()
         to_send["records"] = all_records
         working_dir = 'data'     
-        #print "LOOK AT JSON HERE!!!: \n"   
         with open(working_dir + '/' + fileName, 'w') as fout:
             json.dump(to_send, fout)

@@ -28,27 +28,3 @@ def ical_get_content(URL, is_broken, school_name):
 
 def ical_get_content_from_url(content, index, beg, is_broken, school_name):
 	return get_content(get_calendar_url(content, index, beg), is_broken, school_name)
-
-
-"""
-response = urllib2.urlopen('https://www.scs.cmu.edu/calendar/export.ics')
-
-gcal = Calendar.from_ical(response.read())
-count = 0
-for component in gcal.walk():
-	print component.get('description')
-	#SEMINAR/COLOQ distinction
-	#Get Speaker
-	if component.name == "VEVENT":
-		#get start date
-		print component.decoded('dtstart')
-		#print vDatetime.from_ical(x)
-		print component.get('summary')
-		print component.get('location')
-		print component.get('url')
-        count += 1
-		
-print count
-#print html
-# http://stackoverflow.com/questions/3408097/parsing-files-ics-icalendar-using-python
-"""

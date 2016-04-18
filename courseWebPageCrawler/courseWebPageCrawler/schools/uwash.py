@@ -1,7 +1,5 @@
 import os
 import re
-import urlparse
-import json
 import datetime
 
 import icalendar

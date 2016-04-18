@@ -9,9 +9,8 @@ from courseWebPageCrawler.schools.uiuc import uiuc_executor
 from courseWebPageCrawler.schools.cornell import cornell_executor
 from courseWebPageCrawler.schools.berkeley import berkeley_executor
 from courseWebPageCrawler.schools.uwash import uwash_executor
-#from courseWebPageCrawler.schools.cmu import cmu_executor
-
-#sys.path.append( /Users/batuinal1/Desktop/Git/talkstream/courseWebPageCrawler/courseWebPageCrawler/classes )
+from courseWebPageCrawler.schools.cmu import cmu_executor
+#import new cusom executor of form from courseWebPageCrawler.schools.<school_name> import <school_name>_executor..
 
 #Define url of school here
 cornell_url = "https://www.cs.cornell.edu/events/colloquium"
@@ -19,22 +18,18 @@ uiuc_url = "http://cse.illinois.edu/news-events/seminars"
 berkeley_url = "http://www.eecs.berkeley.edu/Colloquium/"
 uwash_url = "https://www.cs.washington.edu/events/colloquia"
 cmu_url = "https://www.scs.cmu.edu/calendar"
-#add new <school_url> here
+#add new <school_url> here..
 
 def main():
-
-	#print current date and time
-	print str(datetime.now())
-
-	#create a new SSS(Super Seminar Scraper) Object called my_SSS
-	my_SSS = SSS()
 	
-	#create a new School Object for UIUC
-	uiuc = School("uiuc", uiuc_url)
-	#feed our school to our super seminar scraper
-	my_SSS.add_school(uiuc)
+	print str(datetime.now())	#print current date and time
 
+	my_SSS = SSS()	#create a new SSS(Super Seminar Scraper) Object called my_SSS
+	
+	uiuc = School("uiuc", uiuc_url)	#create a new School Object for UIUC
+	my_SSS.add_school(uiuc)	#feed our school to our super seminar scraper
 
+	#Berkeley
 	berkeley = School("berkeley", berkeley_url)
 	my_SSS.add_school(berkeley)
 
@@ -47,30 +42,28 @@ def main():
 	my_SSS.add_school(uwash)
 
 	#CMU
-	#cmu = School("cmu", cmu_url)
-	#my_SSS.add_school(cmu)
+	cmu = School("cmu", cmu_url)
+	my_SSS.add_school(cmu)
 
-	#add new school here ...
+	#add new school here..
 
-	#print my_SSS.get_school_data()
-
-	#Use Scrapy to get raw_html of website
-	my_SSS.scrape_data()
+	my_SSS.scrape_data()	#Use Scrapy to get raw_html of website
 
 	#call executors once schools have been added and SSS object's scrape_data() method has been called
 	uiuc_executor(my_SSS)
 	berkeley_executor(my_SSS)
 	cornell_executor(my_SSS)
 	uwash_executor(my_SSS)
+	cmu_executor(my_SSS)
+	#add new <school_name>.py file to schools folder and write a custom executor..
 
+	"""
 	count = 0
-	for item in my_SSS.get_school('uwash').get_colloquim():
+	for item in my_SSS.get_school('cornell').get_colloquim():
 		print str(count) + ": "
 		print item.print_all()
 		count += 1
+	"""
 
 if __name__ == "__main__":
 	main()
-
-
-

@@ -3,14 +3,14 @@ import os, sys
 class Colloquia:
 
 	def __init__(self):
-		self.topic = str()
-		self.speaker = str()
-		self.date = str()
-		self.venue = str()
+		self.topic = 'TBD'
+		self.speaker = 'TBD'
+		self.date = 'TBD'
+		self.venue = 'TBD'
 		self.university = str()
 		self.url = str()
-		self.description = str()
-		self.tags = ""
+		self.description = 'NONE'
+		self.tags = 'NONE'
 
 	def set_metadata(self, category, data):
 		exec("self." + category + " = data")
