@@ -26,7 +26,6 @@ days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sun
 
 #list or allowed domains
 edu = "edu"
-all_records = []
 
 url_to_school = dict()
 
@@ -250,7 +249,80 @@ def add_to_all_records(records):
     for record in records:
         all_records.append(record)
 
-def writeToFile(fileName):
+def normalize_metadata(metadata):
+    count = 0
+    for elt in metadata:
+        if elt.isalpha():
+            break
+        count += 1
+    metadata = metadata[count:]  
+    return metadata
+
+def normalize(SSS):
+    for school in SSS.get_school_data().itervalues():
+        for colloquia in school.get_colloquim():
+            colloquia.print_all()
+            
+            colloquia.set_metadata('topic', normalize_metadata(colloquia.topic))
+            colloquia.set_metadata('speaker', normalize_metadata(colloquia.speaker))
+            colloquia.set_metadata('venue', colloquia.venue.encode("utf-8"))
+            colloquia.set_metadata('url', colloquia.url.encode("utf-8"))
+            colloquia.set_metadata('description', colloquia.description.encode("utf-8"))
+            colloquia.set_metadata('date', str(colloquia.date))
+            #if ((len(colloquia.speaker) < 2) or ()
+
+#deserializes the file and adds the records to all_records
+#creates a new map of pairs<speaker,topic>, to distinguish between new and old colloquia
+def deserialize(filePath, all_records, speaker_date):
+    f = open(filePath)
+    Topic = str()
+    Speaker = str()
+    Time = str()
+    Venue = str()
+    University = str()
+    URL = str()
+    Description = str()
+    Tags = str()
+    for line in f:
+        print line
+        #if line[0] == '$':
+
+def serialize(filePath, all_records, speaker_date, SSS):
+    print "lets Serialize!"
+    f = open(filePath, 'a+')
+    for school in SSS.get_school_data().itervalues():
+        for colloquia in school.get_colloquim():
+            #print "Speaker: " + colloquia.speaker
+            #print "Date: " + colloquia.date
+            speaker_date_key = colloquia.speaker + colloquia.date
+            print "speaker_date_key is: " + speaker_date_key
+            if speaker_date_key not in speaker_date:
+                f.write(colloquia.serialize())
+    print "Finished Writing"
+    f.close()
+
+def writeToFile(SSS, fileName):
+
+        normalize(SSS)
+        #check if the file exists
+        #if it does, deserialize create dict of pairs<speaker,topic>
+        working_dir = 'data'
+        speaker_date = list()
+        all_records = []
+        filePath = working_dir + '/' + fileName
+        if(os.path.isfile(filePath)):
+            print "SEEN BEFORE WHAT?!?!"
+            #deserialize(filePath, all_records, speaker_date)
+
+        serialize(filePath, all_records, speaker_date, SSS)
+        #to_send = dict()
+
+        to_send["records"] = all_records
+           
+        #with open(working_dir + '/' + fileName, 'w') as fout:
+            #json.dump(to_send, fout)
+
+def writeToFile_JSON(fileName):
         to_send = dict()
         to_send["records"] = all_records
         working_dir = 'data'     

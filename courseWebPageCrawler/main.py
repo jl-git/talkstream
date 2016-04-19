@@ -24,7 +24,7 @@ def main():
 	
 	print str(datetime.now())	#print current date and time
 
-	my_SSS = SSS()	#create a new SSS(Super Seminar Scraper) Object called my_SSS
+	my_SSS = SSS('my_SSS')	#create a new SSS(Super Seminar Scraper) Object called my_SSS
 	
 	uiuc = School("uiuc", uiuc_url)	#create a new School Object for UIUC
 	my_SSS.add_school(uiuc)	#feed our school to our super seminar scraper
@@ -56,6 +56,11 @@ def main():
 	uwash_executor(my_SSS)
 	cmu_executor(my_SSS)
 	#add new <school_name>.py file to schools folder and write a custom executor..
+
+	#normalize and save all the data into a file (append to existing records)
+	my_SSS.save()
+	#write to alltalks.json for Front-end to process
+	#my_SSS.write()
 
 	"""
 	count = 0

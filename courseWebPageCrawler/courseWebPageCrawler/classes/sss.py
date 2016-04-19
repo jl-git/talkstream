@@ -13,8 +13,8 @@ from colloquia import Colloquia
 
 class SSS:
 
-    def __init__(self):
-
+    def __init__(self, SSS_name):
+        self.name = SSS_name
         #metadata, raw_content, url
         self.school_data = dict()
         self.spider = CourseWebPageSpider(CrawlSpider)
@@ -91,3 +91,7 @@ class SSS:
             metadata = shared.extract_date(elt, dist, date_type)
             self.get_school(school_name).get_colloquim()[count].set_metadata('date', str(metadata))
             count += 1
+
+    def save(self):
+        SSS_data_filename = self.name + "_all_records.txt"
+        shared.writeToFile(self, SSS_data_filename)
