@@ -1,7 +1,7 @@
 var app = angular.module('sssApp', []);
 
 app.controller('homepageCtrl', function($scope, $http) {
-	$http.get("courseWebPageCrawler/data/alltalks.json")
+	$http.get("courseWebPageCrawler/data/my_SSS_all_records.json")
 	.success(
 		function(response) {
 			// after get the alltalks.json

@@ -93,5 +93,5 @@ class SSS:
             count += 1
 
     def save(self):
-        SSS_data_filename = self.name + "_all_records.txt"
-        shared.writeToFile(self, SSS_data_filename)
+        SSS_data_filename = self.name + "_all_records.json"
+        shared.writeToFile_JSON(self, SSS_data_filename)

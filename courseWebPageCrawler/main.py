@@ -58,17 +58,8 @@ def main():
 	#add new <school_name>.py file to schools folder and write a custom executor..
 
 	#normalize and save all the data into a file (append to existing records)
+	#also write to alltalks.json for Front-end to process
 	my_SSS.save()
-	#write to alltalks.json for Front-end to process
-	#my_SSS.write()
-
-	"""
-	count = 0
-	for item in my_SSS.get_school('cornell').get_colloquim():
-		print str(count) + ": "
-		print item.print_all()
-		count += 1
-	"""
 
 if __name__ == "__main__":
 	main()

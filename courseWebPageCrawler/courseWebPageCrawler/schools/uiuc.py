@@ -16,16 +16,17 @@ def uiuc_executor(my_SSS):
 	#if any of the elements of months exists it is not filtered out
 	my_SSS.filter_content(school.get_name(), months)
 
+	#Date
 	my_SSS.retrieve_dates(school.get_name(), "Month", 1)
 	
 	my_SSS.set_content_list(my_SSS.get_filtered_content())
+
 	#Topic
 	my_SSS.retrieve_metadata(school.get_name(), 'topic', '<em>', 4, '<','TBD', 0, 0)
 	#Speaker
 	my_SSS.retrieve_metadata(school.get_name(), 'speaker', '<br>', 4, '<', "", 0, 0)
 	#URL
 	my_SSS.retrieve_metadata(school.get_name(), 'url', 'ref=', 5, '<', "", 1, 0)
-	#Date
 	
 	#Set Venue and Official School Name Manually from the school object
 	school.set_venue("NCSA Room 1030")

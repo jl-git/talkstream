@@ -74,8 +74,8 @@ def UST_extractor(elt, num, my_SSS):
             Speaker += elt[index_speaker]
             index_speaker += 1
 
-        my_SSS.get_school('cornell').get_colloquim()[topic_count].set_metadata('url', URL.encode("utf-8"))
-        my_SSS.get_school('cornell').get_colloquim()[topic_count].set_metadata('speaker', Speaker.encode("utf-8"))
+        my_SSS.get_school('cornell').get_colloquim()[topic_count].set_metadata('url', URL)
+        my_SSS.get_school('cornell').get_colloquim()[topic_count].set_metadata('speaker', Speaker)
         topic_count += 1
     
     elif (num == 1):
@@ -91,14 +91,14 @@ def UST_extractor(elt, num, my_SSS):
             while(elt[index_topic] != '<'):
                 Topic += elt[index_topic]
                 index_topic += 1
-            my_SSS.get_school('cornell').get_colloquim()[topic_count].set_metadata('topic', Topic.encode("utf-8"))
+            my_SSS.get_school('cornell').get_colloquim()[topic_count].set_metadata('topic', Topic)
             return
 
         while(elt[index_topic] != '<'):
             Topic += elt[index_topic]
             index_topic += 1
 
-        my_SSS.get_school('cornell').get_colloquim()[topic_count].set_metadata('topic', Topic.encode("utf-8"))
+        my_SSS.get_school('cornell').get_colloquim()[topic_count].set_metadata('topic', Topic)
 
         if "Speaker" in elt:
             index = elt.index('Speaker') + 18
@@ -106,13 +106,13 @@ def UST_extractor(elt, num, my_SSS):
             while (elt[index] != '"'):
                 URL += elt[index]
                 index += 1
-            my_SSS.get_school('cornell').get_colloquim()[topic_count].set_metadata('url', URL.encode("utf-8"))
+            my_SSS.get_school('cornell').get_colloquim()[topic_count].set_metadata('url', URL)
             index += 2
             Speaker = ''
             while (elt[index] != '<'):
                 Speaker += elt[index]
                 index += 1
-            my_SSS.get_school('cornell').get_colloquim()[topic_count].set_metadata('speaker', Speaker.encode("utf-8"))
+            my_SSS.get_school('cornell').get_colloquim()[topic_count].set_metadata('speaker', Speaker)
             topic_count += 1
 
 def clean_no_colloqiums(my_SSS):

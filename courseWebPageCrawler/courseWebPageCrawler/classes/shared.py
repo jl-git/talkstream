@@ -3,6 +3,7 @@ import urlparse
 import re
 import datetime
 import json
+import csv
 
 import urllib2
 import icalendar
@@ -27,6 +28,10 @@ days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sun
 #list or allowed domains
 edu = "edu"
 
+global speaker_date
+speaker_date = list()
+global all_records
+all_records = []
 url_to_school = dict()
 
 def add_url_to_school(key, value):
@@ -245,9 +250,10 @@ def uwash_fix_ics(response):
 def ical_get_content_from_url(content, index, beg, is_broken, school_name):
     return ical_get_content(ical_get_calendar_url(content, index, beg), is_broken, school_name)
 
-def add_to_all_records(records):
-    for record in records:
-        all_records.append(record)
+def add_to_all_records(record):
+    global all_records
+    #for record in records:
+    all_records.append(record)
 
 def normalize_metadata(metadata):
     count = 0
@@ -258,73 +264,54 @@ def normalize_metadata(metadata):
     metadata = metadata[count:]  
     return metadata
 
-def normalize(SSS):
-    for school in SSS.get_school_data().itervalues():
-        for colloquia in school.get_colloquim():
-            colloquia.print_all()
-            
-            colloquia.set_metadata('topic', normalize_metadata(colloquia.topic))
-            colloquia.set_metadata('speaker', normalize_metadata(colloquia.speaker))
-            colloquia.set_metadata('venue', colloquia.venue.encode("utf-8"))
-            colloquia.set_metadata('url', colloquia.url.encode("utf-8"))
-            colloquia.set_metadata('description', colloquia.description.encode("utf-8"))
-            colloquia.set_metadata('date', str(colloquia.date))
-            #if ((len(colloquia.speaker) < 2) or ()
-
 #deserializes the file and adds the records to all_records
 #creates a new map of pairs<speaker,topic>, to distinguish between new and old colloquia
-def deserialize(filePath, all_records, speaker_date):
-    f = open(filePath)
-    Topic = str()
-    Speaker = str()
-    Time = str()
-    Venue = str()
-    University = str()
-    URL = str()
-    Description = str()
-    Tags = str()
-    for line in f:
-        print line
-        #if line[0] == '$':
+def deserialize(filePath):
+    global speaker_date
+    global all_records
 
-def serialize(filePath, all_records, speaker_date, SSS):
-    print "lets Serialize!"
-    f = open(filePath, 'a+')
-    for school in SSS.get_school_data().itervalues():
-        for colloquia in school.get_colloquim():
-            #print "Speaker: " + colloquia.speaker
-            #print "Date: " + colloquia.date
-            speaker_date_key = colloquia.speaker + colloquia.date
-            print "speaker_date_key is: " + speaker_date_key
-            if speaker_date_key not in speaker_date:
-                f.write(colloquia.serialize())
-    print "Finished Writing"
+    data = dict()
+    with open(filePath, 'r') as f:
+        data = json.load(f)
     f.close()
 
-def writeToFile(SSS, fileName):
+    speaker_date = []
+    all_records = []
+    for record in data["records"]:
+        speaker_date_key = ""
+        for key, value in record.iteritems():
+            if (key == "Speaker"):
+                speaker_date_key = value
+            elif (key == "Time"):
+                speaker_date_key = speaker_date_key + value
+                speaker_date.append(speaker_date_key)
+        add_to_all_records(record)
 
-        normalize(SSS)
-        #check if the file exists
-        #if it does, deserialize create dict of pairs<speaker,topic>
-        working_dir = 'data'
-        speaker_date = list()
-        all_records = []
-        filePath = working_dir + '/' + fileName
-        if(os.path.isfile(filePath)):
-            print "SEEN BEFORE WHAT?!?!"
-            #deserialize(filePath, all_records, speaker_date)
+def serialize(filePath, SSS):
+    global speaker_date
+    global all_records
+    
+    for school in SSS.get_school_data().itervalues():
+        for colloquia in school.get_colloquim():
+            new_rec = create_record(colloquia.topic, colloquia.speaker, colloquia.date, colloquia.venue, colloquia.university, colloquia.url, colloquia.description, colloquia.tags)
+            speaker_date_key = colloquia.speaker + str(colloquia.date)
+            if speaker_date_key not in speaker_date:
+                add_to_all_records(new_rec)
+    speaker_date = []
 
-        serialize(filePath, all_records, speaker_date, SSS)
-        #to_send = dict()
+def writeToFile_JSON(SSS, fileName):
+    global speaker_date
+    global all_records
+    to_send = dict()
+    
+    working_dir = 'data'
+    filePath = working_dir + '/' + fileName
+    if(os.path.isfile(filePath)):
+        deserialize(filePath)
 
-        to_send["records"] = all_records
-           
-        #with open(working_dir + '/' + fileName, 'w') as fout:
-            #json.dump(to_send, fout)
+    serialize(filePath, SSS)
 
-def writeToFile_JSON(fileName):
-        to_send = dict()
-        to_send["records"] = all_records
-        working_dir = 'data'     
-        with open(working_dir + '/' + fileName, 'w') as fout:
-            json.dump(to_send, fout)
+    to_send["records"] = all_records    
+    with open(filePath, 'w') as fout:
+        json.dump(to_send, fout)
+    fout.close()
