@@ -120,6 +120,9 @@ def month_converter(month):
     months = ['January', 'February', 'March', 'April', 'May', 'June','July', 'August', 'September', 'October', 'November', 'December']
     return months.index(month) + 1
 
+def month_string_converter(elt):
+    months = ['January', 'February', 'March', 'April', 'May', 'June','July', 'August', 'September', 'October', 'November', 'December']
+    return months[int(elt)]
 
 def day_converter(day):
     return days.index(day) + 1
@@ -162,7 +165,7 @@ def extract_date(elt, dist, date_type):
 
 def create_record(Topic, Speaker, Time, Venue, University, URL, Description, Tags):
 
-    record = {'Topic': Topic.encode("utf-8"), 'Speaker': Speaker.encode("utf-8"), 'Time': str(Time), 'Venue': Venue.encode("utf-8"), 'University': University.encode("utf-8"), 'URL': URL.encode("utf-8"), 'Description': Description.encode("utf-8"), 'Tags': Tags.encode("utf-8")}
+    record = {'Topic': Topic.encode("utf-8"), 'Speaker': Speaker.encode("utf-8"), 'Time': str(Time), 'Venue': Venue.encode("utf-8"), 'University': University.encode("utf-8"), 'URL': URL.encode("utf-8"), 'Description': Description.encode("utf-8"), 'Tags': Tags}
     return record
 
 def create_date(Day, Month, Year):
@@ -302,7 +305,7 @@ def deserialize(filePath):
                 speaker_date_key = value
             elif (key == "Time"):
                 speaker_date_key = speaker_date_key + value
-                add_to_date_count(value)
+                add_to_date_count(str(value))
                 speaker_date.append(speaker_date_key)
         add_to_all_records(record)
 
@@ -355,3 +358,14 @@ def writeToFile_JSON(SSS, fileName):
 
     tsv_filePath = working_dir + '/' + 'month_total.tsv'
     write_tsv_file(tsv_filePath)
+
+    """
+    #For Debugging
+    count = 0
+    for record in all_records:
+        for key, value in record.iteritems():
+            if key == "Tags":
+                print "TAGS_" + str(count) + ": "
+                print value
+                count += 1
+    """
