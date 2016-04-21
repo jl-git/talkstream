@@ -32,6 +32,8 @@ global speaker_date
 speaker_date = list()
 global all_records
 all_records = []
+global date_count
+date_count = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 url_to_school = dict()
 
 def add_url_to_school(key, value):
@@ -255,6 +257,21 @@ def add_to_all_records(record):
     #for record in records:
     all_records.append(record)
 
+def add_to_date_count(val):
+    global date_count
+
+    now = datetime.datetime.now()
+    cur_year = now.year
+
+    Year = val[:4]
+    if(str(cur_year) != Year): return
+
+    Month = val[5] + val[6]
+    if(Month[0] == '0'):
+        Month = Month[1]
+
+    date_count[int(Month)] += 1
+
 def normalize_metadata(metadata):
     count = 0
     for elt in metadata:
@@ -269,6 +286,7 @@ def normalize_metadata(metadata):
 def deserialize(filePath):
     global speaker_date
     global all_records
+    global date_count
 
     data = dict()
     with open(filePath, 'r') as f:
@@ -284,8 +302,10 @@ def deserialize(filePath):
                 speaker_date_key = value
             elif (key == "Time"):
                 speaker_date_key = speaker_date_key + value
+                add_to_date_count(value)
                 speaker_date.append(speaker_date_key)
         add_to_all_records(record)
+
 
 def serialize(filePath, SSS):
     global speaker_date
@@ -296,12 +316,29 @@ def serialize(filePath, SSS):
             new_rec = create_record(colloquia.topic, colloquia.speaker, colloquia.date, colloquia.venue, colloquia.university, colloquia.url, colloquia.description, colloquia.tags)
             speaker_date_key = colloquia.speaker + str(colloquia.date)
             if speaker_date_key not in speaker_date:
+                add_to_date_count(str(colloquia.date))
                 add_to_all_records(new_rec)
     speaker_date = []
+
+def write_tsv_file(tsv_filePath):
+    global date_count
+    date_count_file = open(tsv_filePath, 'w+')
+    date_count_file.write('month\tcount\n')
+    now = datetime.datetime.now()
+    cur_year = str(now.year)
+
+    index = 0
+    for elt in date_count:
+        index += 1
+        if(elt == 0): continue
+        new_elt = cur_year + "-" + str(index) + "\t" + str(elt) + "\n"
+        date_count_file.write(new_elt)
+    date_count_file.close()
 
 def writeToFile_JSON(SSS, fileName):
     global speaker_date
     global all_records
+    
     to_send = dict()
     
     working_dir = 'data'
@@ -315,3 +352,6 @@ def writeToFile_JSON(SSS, fileName):
     with open(filePath, 'w') as fout:
         json.dump(to_send, fout)
     fout.close()
+
+    tsv_filePath = working_dir + '/' + 'month_total.tsv'
+    write_tsv_file(tsv_filePath)
