@@ -39,13 +39,13 @@ function load_target(json) {
 
         // append the seminar information to the univeristies's entry after its other seminars
         if (universities.hasOwnProperty(json['records'][i]['University'])) {
-          universities[json['records'][i]['University']][3] = universities[json['records'][i]['University']][3].concat("<br>" + json['records'][i]['Time'] + " " + json['records'][i]['Topic']);
-          universities[json['records'][i]['University']][4] = universities[json['records'][i]['University']][4]  + 1;
+          universities[json['records'][i]['University']][3] = universities[json['records'][i]['University']][3].concat("<br>" + json['records'][i]['Time'] + " <a href=" + json['records'][i]['URL'] + ">" + json['records'][i]['Topic'] + "</a>");
+          universities[json['records'][i]['University']][4] = universities[json['records'][i]['University']][4] + 1;
 
         // if the university appears first time, then create a new entry and put lat, long and
         // other information need to be put into infowindow
         } else {
-          universities[json['records'][i]['University']] = [ u_location[json['records'][i]['University']][0], u_location[json['records'][i]['University']][1], 1, json['records'][i]['Time'] + " " + json['records'][i]['Topic'], 1];
+          universities[json['records'][i]['University']] = [ u_location[json['records'][i]['University']][0], u_location[json['records'][i]['University']][1], 1, json['records'][i]['Time'] + " <a href=" + json['records'][i]['URL'] + ">" + json['records'][i]['Topic'] + "</a>", 1];
         }
       }
     }
@@ -85,7 +85,7 @@ function setMarkers(map, universities) {
     });
 
     // generate the content need to be put into the infowindow
-    var content = university + ' (' + universities[university][4] + ')<hr>' + universities[university][3];
+    var content = '<h4>' + university + '</h4>' + '<h5>Total: ' + universities[university][4] + '</h5>' + universities[university][3];
     
     // add a click listener to the marker that will open the infowindow
     google.maps.event.addListener(marker,'click', (function(marker,content,infowindow){ 
