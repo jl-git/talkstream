@@ -23,7 +23,12 @@ function load_target(json) {
     'Columbia University' : [40.807544, -73.962562],
     'Harvard University': [42.376971, -71.116660],
     'Stanford University': [37.427500, -122.169601],
-    'Brown University': [41.826852, -71.402591]};
+    'Brown University': [41.826852, -71.402591],
+    'University of California, Berkeley': [37.871642, -122.258638],
+    'Carnegie Mellon University': [40.444285, -79.944287],
+    'University of Washington': [47.654902, -122.303498],
+    'UIUC': [40.102666, -88.227215],
+  };
 
     var universities = {};
 

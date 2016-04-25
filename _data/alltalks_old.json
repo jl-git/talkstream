@@ -1,0 +1,166 @@
+{
+"records": [
+  {
+    "Topic" : "Program Analysis and Transformation for Scientific Computing",
+    "Speaker" : "Paul Hovland",
+    "Time" : "2015-10-07 09:30",
+    "Venue" : "Gould-Simpson 701",
+    "University" : "University of Arizona",
+    "URL" : "https://www.cs.arizona.edu/news/events/evdetail.html?ID=681",
+    "Description" : "We discuss several applications of program analysis and transformation in scientific computing. We begin with a discussion of automatic empirical performance tuning (autotuning) techniques and strategies for dealing with multiple, competing objectives (such as time and power). We continue with a discussion of automatic (also called algorithmic) differentiation techniques for computing the derivatives of functions defined by computer subprograms. We conclude with a consideration of program verification, with an emphasis on proving the equivalence of two implementations.",
+    "Tags" : ["Scientific Computing", "University of Arizona"]
+  },
+  {
+    "Topic" : "Deep Learning with Attention Mechanisms",
+    "Speaker" : "Yoshua Bengio",
+    "Time" : "2015-08-27 09:30",
+    "Venue" : "Gates Hall G01",
+    "University" : "Cornell University",
+    "URL" : "http://www.cs.cornell.edu/sites/default/files/shared/events/colloquium/Bengio.png",
+    "Description" : "",
+    "Tags" : ["Deep Learning ", "Cornell University"]
+  },
+  {
+    "Topic" : "Synthesis and Verification for Everyone",
+    "Speaker" : "Emina Torlak",
+    "Time" : "2015-09-24 09:30",
+    "Venue" : "Gates Hall G01",
+    "University" : "Cornell University",
+    "URL" : "http://www.cs.cornell.edu/sites/default/files/shared/events/colloquium/Torlak.png",
+    "Description" : "",
+    "Tags" : ["Verification", "Cornell University"]
+  },
+  {
+    "Topic" : "Concrete Applications of Submodular Theory in Machine Learning",
+    "Speaker" : "Jeffrey A. Bilmes",
+    "Time" : "2015-11-5 17:15",
+    "Venue" : "Maxwell Dworkin G115",
+    "University" : "Harvard University",
+    "URL" : "https://www.seas.harvard.edu/calendar/event/85331",
+    "Description" : "Machine learning is one of the most promising areas within computer science that has the potential to address many of society’s challenges.  It is important, however, to develop machine learning constructs that are simple to define, mathematically rich, naturally suited to real-world applications, and scalable to large problem instances.  Convexity and graphical models are two such broad frameworks that are highly successful, but there are still many problem areas for which neither is suitable.  This talk will discuss submodularity, a third such framework that is becoming more popular.  Despite having been a key concept in economics, discrete mathematics, and optimization for over 100 years, submodularity is a relatively recent phenomenon in machine learning.  We are now seeing a surprisingly diverse set of real-world problems in machine learning to which submodularity is applicable.  In this talk, we will cover some of the more prominent examples, drawing often from the speaker's own work.  This includes applications in dynamic graphical models, clustering, summarization, computer vision, natural language processing, parallel computing, and computational biology.  We will see how submodularity leads to efficient and scalable algorithms while simultaneously guaranteeing high-quality solutions; in addition, we will demonstrate how these concrete applications have advanced and contributed to the purely mathematical study of submodularity.",
+    "Tags" : ["Harvard University", "Machine Learning"]
+  },
+  {
+    "Topic" : "Concrete Applications of Submodular Theory in Machine Learning",
+    "Speaker" : "test 1",
+    "Time" : "2015-11-5 17:15",
+    "Venue" : "Maxwell Dworkin G115",
+    "University" : "Harvard University",
+    "URL" : "https://www.seas.harvard.edu/calendar/event/85331",
+    "Description" : "Machine learning is one of the most promising areas within computer science that has the potential to address many of society’s challenges.  It is important, however, to develop machine learning constructs that are simple to define, mathematically rich, naturally suited to real-world applications, and scalable to large problem instances.  Convexity and graphical models are two such broad frameworks that are highly successful, but there are still many problem areas for which neither is suitable.  This talk will discuss submodularity, a third such framework that is becoming more popular.  Despite having been a key concept in economics, discrete mathematics, and optimization for over 100 years, submodularity is a relatively recent phenomenon in machine learning.  We are now seeing a surprisingly diverse set of real-world problems in machine learning to which submodularity is applicable.  In this talk, we will cover some of the more prominent examples, drawing often from the speaker's own work.  This includes applications in dynamic graphical models, clustering, summarization, computer vision, natural language processing, parallel computing, and computational biology.  We will see how submodularity leads to efficient and scalable algorithms while simultaneously guaranteeing high-quality solutions; in addition, we will demonstrate how these concrete applications have advanced and contributed to the purely mathematical study of submodularity.",
+    "Tags" : ["Harvard University", "Machine Learning"]
+  },
+  {
+    "Topic" : "Concrete Applications of Submodular Theory in Machine Learning",
+    "Speaker" : "test 2",
+    "Time" : "2015-11-5 17:15",
+    "Venue" : "Maxwell Dworkin G115",
+    "University" : "Harvard University",
+    "URL" : "https://www.seas.harvard.edu/calendar/event/85331",
+    "Description" : "Machine learning is one of the most promising areas within computer science that has the potential to address many of society’s challenges.  It is important, however, to develop machine learning constructs that are simple to define, mathematically rich, naturally suited to real-world applications, and scalable to large problem instances.  Convexity and graphical models are two such broad frameworks that are highly successful, but there are still many problem areas for which neither is suitable.  This talk will discuss submodularity, a third such framework that is becoming more popular.  Despite having been a key concept in economics, discrete mathematics, and optimization for over 100 years, submodularity is a relatively recent phenomenon in machine learning.  We are now seeing a surprisingly diverse set of real-world problems in machine learning to which submodularity is applicable.  In this talk, we will cover some of the more prominent examples, drawing often from the speaker's own work.  This includes applications in dynamic graphical models, clustering, summarization, computer vision, natural language processing, parallel computing, and computational biology.  We will see how submodularity leads to efficient and scalable algorithms while simultaneously guaranteeing high-quality solutions; in addition, we will demonstrate how these concrete applications have advanced and contributed to the purely mathematical study of submodularity.",
+    "Tags" : ["Harvard University", "Machine Learning"]
+  },
+  {
+    "Topic" : "Concrete Applications of Submodular Theory in Machine Learning",
+    "Speaker" : "test 3",
+    "Time" : "2015-11-5 17:15",
+    "Venue" : "Maxwell Dworkin G115",
+    "University" : "Harvard University",
+    "URL" : "https://www.seas.harvard.edu/calendar/event/85331",
+    "Description" : "Machine learning is one of the most promising areas within computer science that has the potential to address many of society’s challenges.  It is important, however, to develop machine learning constructs that are simple to define, mathematically rich, naturally suited to real-world applications, and scalable to large problem instances.  Convexity and graphical models are two such broad frameworks that are highly successful, but there are still many problem areas for which neither is suitable.  This talk will discuss submodularity, a third such framework that is becoming more popular.  Despite having been a key concept in economics, discrete mathematics, and optimization for over 100 years, submodularity is a relatively recent phenomenon in machine learning.  We are now seeing a surprisingly diverse set of real-world problems in machine learning to which submodularity is applicable.  In this talk, we will cover some of the more prominent examples, drawing often from the speaker's own work.  This includes applications in dynamic graphical models, clustering, summarization, computer vision, natural language processing, parallel computing, and computational biology.  We will see how submodularity leads to efficient and scalable algorithms while simultaneously guaranteeing high-quality solutions; in addition, we will demonstrate how these concrete applications have advanced and contributed to the purely mathematical study of submodularity.",
+    "Tags" : ["Harvard University", "Machine Learning"]
+  },
+  {
+    "Topic" : "Concrete Applications of Submodular Theory in Machine Learning",
+    "Speaker" : "test 4",
+    "Time" : "2015-11-5 17:15",
+    "Venue" : "Maxwell Dworkin G115",
+    "University" : "Harvard University",
+    "URL" : "https://www.seas.harvard.edu/calendar/event/85331",
+    "Description" : "Machine learning is one of the most promising areas within computer science that has the potential to address many of society’s challenges.  It is important, however, to develop machine learning constructs that are simple to define, mathematically rich, naturally suited to real-world applications, and scalable to large problem instances.  Convexity and graphical models are two such broad frameworks that are highly successful, but there are still many problem areas for which neither is suitable.  This talk will discuss submodularity, a third such framework that is becoming more popular.  Despite having been a key concept in economics, discrete mathematics, and optimization for over 100 years, submodularity is a relatively recent phenomenon in machine learning.  We are now seeing a surprisingly diverse set of real-world problems in machine learning to which submodularity is applicable.  In this talk, we will cover some of the more prominent examples, drawing often from the speaker's own work.  This includes applications in dynamic graphical models, clustering, summarization, computer vision, natural language processing, parallel computing, and computational biology.  We will see how submodularity leads to efficient and scalable algorithms while simultaneously guaranteeing high-quality solutions; in addition, we will demonstrate how these concrete applications have advanced and contributed to the purely mathematical study of submodularity.",
+    "Tags" : ["Harvard University", "Machine Learning"]
+  },
+  {
+    "Topic" : "Concrete Applications of Submodular Theory in Machine Learning",
+    "Speaker" : "test 5",
+    "Time" : "2015-11-5 17:15",
+    "Venue" : "Maxwell Dworkin G115",
+    "University" : "Harvard University",
+    "URL" : "https://www.seas.harvard.edu/calendar/event/85331",
+    "Description" : "Machine learning is one of the most promising areas within computer science that has the potential to address many of society’s challenges.  It is important, however, to develop machine learning constructs that are simple to define, mathematically rich, naturally suited to real-world applications, and scalable to large problem instances.  Convexity and graphical models are two such broad frameworks that are highly successful, but there are still many problem areas for which neither is suitable.  This talk will discuss submodularity, a third such framework that is becoming more popular.  Despite having been a key concept in economics, discrete mathematics, and optimization for over 100 years, submodularity is a relatively recent phenomenon in machine learning.  We are now seeing a surprisingly diverse set of real-world problems in machine learning to which submodularity is applicable.  In this talk, we will cover some of the more prominent examples, drawing often from the speaker's own work.  This includes applications in dynamic graphical models, clustering, summarization, computer vision, natural language processing, parallel computing, and computational biology.  We will see how submodularity leads to efficient and scalable algorithms while simultaneously guaranteeing high-quality solutions; in addition, we will demonstrate how these concrete applications have advanced and contributed to the purely mathematical study of submodularity.",
+    "Tags" : ["Harvard University", "Machine Learning"]
+  },
+  {
+    "Topic" : "Concrete Applications of Submodular Theory in Machine Learning",
+    "Speaker" : "test 6",
+    "Time" : "2015-11-5 17:15",
+    "Venue" : "Maxwell Dworkin G115",
+    "University" : "Harvard University",
+    "URL" : "https://www.seas.harvard.edu/calendar/event/85331",
+    "Description" : "Machine learning is one of the most promising areas within computer science that has the potential to address many of society’s challenges.  It is important, however, to develop machine learning constructs that are simple to define, mathematically rich, naturally suited to real-world applications, and scalable to large problem instances.  Convexity and graphical models are two such broad frameworks that are highly successful, but there are still many problem areas for which neither is suitable.  This talk will discuss submodularity, a third such framework that is becoming more popular.  Despite having been a key concept in economics, discrete mathematics, and optimization for over 100 years, submodularity is a relatively recent phenomenon in machine learning.  We are now seeing a surprisingly diverse set of real-world problems in machine learning to which submodularity is applicable.  In this talk, we will cover some of the more prominent examples, drawing often from the speaker's own work.  This includes applications in dynamic graphical models, clustering, summarization, computer vision, natural language processing, parallel computing, and computational biology.  We will see how submodularity leads to efficient and scalable algorithms while simultaneously guaranteeing high-quality solutions; in addition, we will demonstrate how these concrete applications have advanced and contributed to the purely mathematical study of submodularity.",
+    "Tags" : ["Harvard University", "Machine Learning"]
+  },
+  {
+    "Topic" : "Concrete Applications of Submodular Theory in Machine Learning",
+    "Speaker" : "Jeffrey A. Bilmes",
+    "Time" : "2015-11-5 17:15",
+    "Venue" : "Maxwell Dworkin G115",
+    "University" : "Harvard University",
+    "URL" : "https://www.seas.harvard.edu/calendar/event/85331",
+    "Description" : "Machine learning is one of the most promising areas within computer science that has the potential to address many of society’s challenges.  It is important, however, to develop machine learning constructs that are simple to define, mathematically rich, naturally suited to real-world applications, and scalable to large problem instances.  Convexity and graphical models are two such broad frameworks that are highly successful, but there are still many problem areas for which neither is suitable.  This talk will discuss submodularity, a third such framework that is becoming more popular.  Despite having been a key concept in economics, discrete mathematics, and optimization for over 100 years, submodularity is a relatively recent phenomenon in machine learning.  We are now seeing a surprisingly diverse set of real-world problems in machine learning to which submodularity is applicable.  In this talk, we will cover some of the more prominent examples, drawing often from the speaker's own work.  This includes applications in dynamic graphical models, clustering, summarization, computer vision, natural language processing, parallel computing, and computational biology.  We will see how submodularity leads to efficient and scalable algorithms while simultaneously guaranteeing high-quality solutions; in addition, we will demonstrate how these concrete applications have advanced and contributed to the purely mathematical study of submodularity.",
+    "Tags" : ["Harvard University", "Machine Learning"]
+  },
+  {
+    "Topic" : "Rethinking Memory System Design for Data-Intensive Computing",
+    "Speaker" : "Onur Mutlu",
+    "Time" : "2015-09-23 17:15",
+    "Venue" : "Gates Building B03",
+    "University" : "Stanford University",
+    "URL" : "http://web.stanford.edu/class/ee380/",
+    "Description" : "The memory system is a fundamental performance and energy bottleneck in almost all computing systems. Recent system design, application, and technology trends that require more capacity, bandwidth, efficiency, and predictability out of the memory system make it an even more important system bottleneck. At the same time, DRAM and flash technologies are experiencing difficult technology scaling challenges that make the maintenance and enhancement of their capacity, energy-efficiency, and reliability significantly more costly with conventional techniques. In this talk, we examine some promising research and design directions to overcome challenges posed by memory scaling. Specifically, we discuss three key solution directions: 1) enabling new memory architectures, functions, interfaces, and better integration of the memory and the rest of the system, 2) designing a memory system that intelligently employs multiple memory technologies and coordinates memory and storage management using non-volatile memory technologies, 3) providing predictable performance and QoS to applications sharing the memory/storage system. If time permits, we might also briefly touch upon our ongoing related work in combating scaling challenges of NAND flash memory.",
+    "Tags" : ["Standford University", "System Design"]
+  }
+],
+"speakers": [
+  {
+    "Name" : "Paul Hovland",
+    "Affiliation" : "University of Arizona"
+  },
+  {
+    "Name" : "Jeffrey A. Bilmes",
+    "Affiliation" : "University of Arizona"
+  },
+  {
+    "Name" : "Emina Torlak",
+    "Affiliation" : "University of Arizona"
+  },
+  {
+    "Name" : "test 1",
+    "Affiliation" : "University of Arizona"
+  },
+  {
+    "Name" : "test 2",
+    "Affiliation" : "University of Arizona"
+  },
+  {
+    "Name" : "test 3",
+    "Affiliation" : "University of Arizona"
+  },
+  {
+    "Name" : "test 4",
+    "Affiliation" : "University of Arizona"
+  },
+  {
+    "Name" : "test 5",
+    "Affiliation" : "University of Arizona"
+  },
+  {
+    "Name" : "test 6",
+    "Affiliation" : "University of Arizona"
+  },
+  {
+    "Name" : "Onur Mutlu",
+    "Affiliation" : "Google"
+  }
+]
+}
