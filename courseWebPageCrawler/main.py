@@ -56,7 +56,13 @@ def main():
 	uwash_executor(my_SSS)
 	cmu_executor(my_SSS)
 	#add new <school_name>.py file to schools folder and write a custom executor..
-
+	"""
+	count = 0
+	for elt in my_SSS.get_school('cmu').get_colloquim():
+		print str(count) + ": "
+		print elt.print_all()
+		count += 1
+	"""
 	#normalize and save all the data into a file (append to existing records)
 	#also write to alltalks.json for Front-end to process
 	my_SSS.save()

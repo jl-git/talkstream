@@ -37,25 +37,27 @@ def speaker_topic_url_handler(h4, my_SSS):
     prev_tag = ""
     for elt in h4:
         count += 1
-        if len(elt) < 12:
-            continue
-        elif "TBD" in elt:
+        if len(elt) < 12:   continue
+
+        if "TBD" in elt:
             my_SSS.get_school('cornell').get_colloquim()[topic_count].set_metadata('topic', "Topic/Title TBD")
             prev_tag = "TBD"
-        elif "No Colloquium" in elt:
+
+        if "No Colloquium" in elt:
             my_SSS.get_school('cornell').get_colloquim()[topic_count].set_metadata('topic', "NO")
             topic_count += 1
             prev_tag = "NoC"
-        elif ("<em>" in elt):
 
+        if (("<em>" in elt)):
             if prev_tag != 'Title':
                 UST_extractor(elt, 1, my_SSS)
             prev_tag = "Title"
 
-        elif (("Speaker:" in elt) or ('"speaker"' in elt)):
+        if (("Speaker:" in elt) or ('"speaker"' in elt)):
             if prev_tag == "TBD" or prev_tag == "Title":
                 UST_extractor(elt, 2, my_SSS)
             prev_tag = "Speaker" 
+
     clean_no_colloqiums(my_SSS)    
 
 def UST_extractor(elt, num, my_SSS):

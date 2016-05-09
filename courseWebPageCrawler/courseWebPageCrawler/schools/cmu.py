@@ -54,7 +54,8 @@ def retreive_colloquia(my_SSS):
 				cur.set_metadata('date', Time)
 
 				Venue = elt.get('location')
-				cur.set_metadata('venue', Venue)
+				if(Venue):
+					cur.set_metadata('venue', Venue)
 
 				URL = elt.get('URL')
 				cur.set_metadata('url', URL)

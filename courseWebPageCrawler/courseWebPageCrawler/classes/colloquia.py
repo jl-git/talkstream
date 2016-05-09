@@ -40,4 +40,4 @@ class Colloquia:
 		print "UNIV: " + self.university
 		print "URL: " + self.url
 		print "DESCRIPTION: " + self.description 
-		print "TAGS: " + self.tags
+		print "TAGS: " + str(self.tags)

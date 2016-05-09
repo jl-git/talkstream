@@ -23,7 +23,7 @@ uwash_url = "https://www.cs.washington.edu/events/colloquia"
 cmu_url = "https://www.scs.cmu.edu/calendar"
 
 months = ['january', 'february', 'march', 'april', 'may', 'june','july', 'august', 'september', 'october', 'november', 'december']
-days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']
+days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday', ]
 
 #list or allowed domains
 edu = "edu"
