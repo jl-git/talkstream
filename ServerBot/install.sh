@@ -3,9 +3,9 @@ sudo su
 echo "Updating"
 yum update -y
 echo "Updated"
-aws configure set aws_access_key_id AKIAISOAOQKZPNRSDTCA
-aws configure set aws_secret_access_key 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
-aws configure set default.region us-east-1
+aws configure set aws_access_key_id $XYZ
+aws configure set aws_secret_access_key $XYZ
+aws configure set default.region $XYZ
 echo "AWS CONFIGURED"
 yum -y install tomcat8-webapps tomcat8-docs-webapp tomcat8-admin-webapps
 echo "TOMCAT INSTALLED"

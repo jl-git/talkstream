@@ -10,7 +10,7 @@ from courseWebPageCrawler.schools.cornell import cornell_executor
 from courseWebPageCrawler.schools.berkeley import berkeley_executor
 from courseWebPageCrawler.schools.uwash import uwash_executor
 from courseWebPageCrawler.schools.cmu import cmu_executor
-#import new cusom executor of form from courseWebPageCrawler.schools.<school_name> import <school_name>_executor..
+#import new custom executor of form from courseWebPageCrawler.schools.<school_name> import <school_name>_executor..
 
 #Define url of school here
 cornell_url = "https://www.cs.cornell.edu/events/colloquium"
